@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Digital Attention across London</title>
+
+  <!-- Fonts: Raleway (headings) + Source Sans 3 (body) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;600;700;800&family=Source+Sans+3:ital,wght@0,300;0,400;0,600;1,300&display=swap" rel="stylesheet"/>
+
+  <!-- Mapbox GL JS -->
+  <link href="https://api.mapbox.com/mapbox-gl-js/v3.3.0/mapbox-gl.css" rel="stylesheet"/>
+  <script src="https://api.mapbox.com/mapbox-gl-js/v3.3.0/mapbox-gl.js"></script>
+
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <link rel="stylesheet" href="style.css"/>
+</head>
+
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <span class="nav-brand">Digital <span>Attention</span></span>
+    <ul class="nav-links">
+      <li><a href="#hero">Home</a></li>
+      <li><a href="#intro">Introduction</a></li>
+      <li><a href="#map1">POI Map</a></li>
+      <li><a href="#map2">Heatmap</a></li>
+      <li><a href="#map3">Map 3</a></li>
+      <li><a href="#map4">Map 4</a></li>
+      <li><a href="#conclusion">Conclusion</a></li>
+      <li><a href="#team">Team</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="hero-inner">
+      <div class="hero-tag">Group 9</div>
+      <h1 class="hero-title">Digital Attention<br/><span>across London</span></h1>
+      <p class="hero-desc">
+        A Spatial-Temporal Analysis of Urban Places Using Wikipedia Pageviews
+      </p>
+      <a class="btn btn-primary" href="#intro">Explore the project</a>
+      <a class="btn btn-outline" href="#team">Meet the team</a>
+    </div>
+  </section>
+
+  <!-- SECTION 1 · Introduction -->
+  <section id="intro" class="bg-light">
+    <div class="section-inner">
+      <p class="section-label">01 · Introduction</p>
+      <h2 class="section-title">Research Question</h2>
+      <hr class="rule"/>
+      <p class="section-subtitle">
+        Write your project introduction here. Explain the urban analytics topic, why it matters, and what questions you are investigating.
+      </p>
+
+      <div class="cards-grid">
+        <div class="card">
+          <div class="card-icon">
+            <svg width="22" height="22" fill="none" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 010 20M12 2a15 15 0 000 20"/></svg>
+          </div>
+          <h3>Spatial Scale</h3>
+          <p>Describe the spatial scale of your analysis — city-wide, borough-level, street-level, etc.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">
+            <svg width="22" height="22" fill="none" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+          </div>
+          <h3>Data Sources</h3>
+          <p>Briefly list the key datasets powering your visualisations and where they come from.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">
+            <svg width="22" height="22" fill="none" stroke-width="2" viewBox="0 0 24 24"><path d="M12 20V10M18 20V4M6 20v-4"/></svg>
+          </div>
+          <h3>Key Insight</h3>
+          <p>Summarise the central insight or argument your project makes about urban analytics.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">
+            <svg width="22" height="22" fill="none" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>
+          </div>
+          <h3>Methodology</h3>
+          <p>Outline the analytical approach and visualisation methods used in the project.</p>
+        </div>
+      </div>
+
+      <div class="stats-row">
+        <div class="stat-item"><div class="stat-value">8.9M</div><div class="stat-label">Population</div></div>
+        <div class="stat-item"><div class="stat-value">33</div><div class="stat-label">Boroughs</div></div>
+        <div class="stat-item"><div class="stat-value">5+</div><div class="stat-label">Datasets</div></div>
+        <div class="stat-item"><div class="stat-value">2025</div><div class="stat-label">Data Year</div></div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider"/>
+
+<!-- SECTION 2 · Map 1 · POI Distribution -->
+<section id="map1" class="bg-white">
+  <!-- Section header (constrained width) -->
+  <div class="section-inner p3-header">
+    <p class="section-label">02 · Visualisation 1</p>
+    <h2 class="section-title">POI Distribution Map</h2>
+    <hr class="rule"/>
+    <p class="section-subtitle">
+      Explore how London's cultural, green, and commercial places are distributed across the city.
+      Point size reflects total Wikipedia pageviews in 2025.
+    </p>
+  </div>
+
+  <!-- Full-width map container -->
+  <div class="p3-map-wrap">
+    <div id="map-p3"></div>
+
+    <!-- Bottom-left bar chart overlay -->
+    <div class="p3-chart-box">
+      <div class="p3-chart-title" id="p3-chart-title">Top 5 POIs — All Categories</div>
+      <canvas id="p3-bar-chart"></canvas>
+    </div>
+
+    <!-- Floating right panel -->
+    <div class="p3-sidebar">
+
+      <!-- Category filter buttons -->
+      <div class="p3-panel-block">
+        <div class="p3-panel-label">Category</div>
+        <div class="p3-btn-group">
+          <button class="p3-btn active" data-cat="all">All POIs</button>
+          <button class="p3-btn" data-cat="Cultural_Heritage">Cultural &amp; Heritage</button>
+          <button class="p3-btn" data-cat="Green_Recreation">Green &amp; Recreation</button>
+          <button class="p3-btn" data-cat="Commercial">Commercial</button>
+        </div>
+      </div>
+
+      <!-- Sub-type filter buttons (shown when a category is selected) -->
+      <div class="p3-panel-block" id="p3-sub-panel" style="display:none;">
+        <div class="p3-panel-label">Sub-type</div>
+        <div class="p3-btn-group" id="p3-sub-buttons"></div>
+      </div>
+
+      <!-- Legend -->
+      <div class="p3-panel-block">
+        <div class="p3-panel-label">Legend</div>
+        <div class="p3-legend-item">
+          <span class="p3-dot" style="background:#9966CC"></span>
+          Cultural &amp; Heritage
+        </div>
+        <div class="p3-legend-item">
+          <span class="p3-dot" style="background:#5B9DE8"></span>
+          Green &amp; Recreation
+        </div>
+        <div class="p3-legend-item">
+          <span class="p3-dot" style="background:#F0D060"></span>
+          Commercial
+        </div>
+        <div class="p3-legend-size">
+          <span>●</span> Point size = 2025 pageviews
+        </div>
+      </div>
+
+      <!-- Interaction hint -->
+      <div class="p3-hint">Hover to preview · Click for details</div>
+    </div>
+  </div>
+
+  <!-- Hover tooltip -->
+  <div id="p3-tooltip" style="display:none;"></div>
+
+  <!-- Click popup -->
+  <div id="p3-popup" style="display:none;">
+    <button id="p3-popup-close">✕</button>
+    <div id="p3-popup-content"></div>
+  </div>
+
+  <p class="map-source" style="padding: 0.5rem 2.5rem;">Data source: Wikipedia Pageviews API · OpenStreetMap via Overpass</p>
+</section>
+
+  <hr class="divider"/>
+
+<hr class="divider"/>
+
+<!-- SECTION 3 · Map 2 · Attention Heatmap -->
+<section id="map2" class="bg-light">
+  <!-- Section header (constrained width) -->
+  <div class="section-inner p4-header">
+    <p class="section-label">03 · Visualisation 2</p>
+    <h2 class="section-title">Attention Heatmap</h2>
+    <hr class="rule"/>
+    <p class="section-subtitle">
+      Wikipedia pageviews from 775 London POIs aggregated to MSOA level,
+      visualised as a choropleth map to reveal the spatial distribution
+      of digital attention across London's neighbourhoods in 2025.
+    </p>
+  </div>
+
+  <!-- Full-width map container -->
+  <div class="p4-map-wrap">
+    <div id="map-p4"></div>
+
+    <!-- Top-left key patterns overlay -->
+    <div class="p4-insight-box">
+      <div class="p4-panel-label">Key Patterns</div>
+      <div class="p4-insight" id="p4-insight">
+        Digital attention concentrates strongly in Central London. Westminster and Camden record the highest total pageviews, while outer boroughs receive far less Wikipedia traffic.
+      </div>
+    </div>
+
+    <!-- Bottom-left top hotspots chart overlay -->
+    <div class="p4-chart-box">
+      <div class="p4-chart-title" id="p4-chart-title">Top Hotspot Areas</div>
+      <canvas id="p4-bar-chart"></canvas>
+    </div>
+
+    <!-- Floating right panel -->
+    <div class="p4-sidebar">
+
+      <!-- Category filter buttons -->
+      <div class="p4-panel-block">
+        <div class="p4-panel-label">POI Category</div>
+        <div class="p4-btn-group">
+          <button class="p4-btn active" data-layer="all">All POIs</button>
+          <button class="p4-btn" data-layer="cultural">Cultural &amp; Heritage</button>
+          <button class="p4-btn" data-layer="green">Green &amp; Recreation</button>
+          <button class="p4-btn" data-layer="commercial">Commercial</button>
+        </div>
+      </div>
+
+      <!-- Legend -->
+      <div class="p4-panel-block">
+        <div class="p4-panel-label">Legend</div>
+        <div class="p4-legend-gradient">
+          <div class="p4-grad-bar"></div>
+          <div class="p4-grad-labels">
+            <span>Low</span>
+            <span>Medium</span>
+            <span>High</span>
+          </div>
+          <div class="p4-grad-text">
+            <span>2025 Total Pageviews</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Filter -->
+      <div class="p4-panel-block">
+        <div class="p4-panel-label">Filter by Attention</div>
+        <div class="p4-btn-group">
+          <button class="p4-filter-btn active" data-filter="all">Show All</button>
+          <button class="p4-filter-btn" data-filter="high">High Attention</button>
+          <button class="p4-filter-btn" data-filter="low">Low Attention</button>
+        </div>
+      </div>
+
+      <!-- Interaction hint -->
+      <div class="p4-hint">Hover over an area to see details</div>
+    </div>
+  </div>
+
+  <!-- Hover tooltip -->
+  <div id="p4-tooltip" style="display:none;"></div>
+
+  <p class="map-source" style="padding: 0.5rem 2.5rem;">Data: Wikipedia Pageviews API · ONS MSOA boundaries (2011)</p>
+</section>
+
+  <hr class="divider"/>
+
+  <!-- SECTION 4 · Map 3 -->
+  <section id="map3" class="bg-white">
+    <div class="section-inner">
+      <p class="section-label">04 · Visualisation 3</p>
+      <h2 class="section-title">Map Title Here</h2>
+      <hr class="rule"/>
+      <p class="section-subtitle">Describe this third visualisation. Copy any section block to add more maps.</p>
+      <div class="map-wrap">
+        <div id="mapbox-3">
+          <div class="map-placeholder">
+            <svg width="44" height="44" fill="none" stroke="#56C9D6" stroke-width="1.5" viewBox="0 0 24 24"><path d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 13l4.553 2.276A1 1 0 0021 21.382V10.618a1 1 0 00-.553-.894L15 7m0 13V7m0 0L9 4"/></svg>
+            Mapbox Map 3 — add your token in the script below
+          </div>
+        </div>
+      </div>
+      <p class="map-source">Data source: [Dataset name] · <a href="#">Link to data</a></p>
+    </div>
+  </section>
+
+  <hr class="divider"/>
+
+  <!-- SECTION 5 · Map 4 -->
+  <section id="map4" class="bg-light">
+    <div class="section-inner">
+      <p class="section-label">05 · Visualisation 4</p>
+      <h2 class="section-title">Map Title Here</h2>
+      <hr class="rule"/>
+      <p class="section-subtitle">Describe this fourth visualisation and the key spatial patterns it reveals.</p>
+      <div class="map-wrap">
+        <div id="mapbox-4">
+          <div class="map-placeholder">
+            <svg width="44" height="44" fill="none" stroke="#56C9D6" stroke-width="1.5" viewBox="0 0 24 24"><path d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 13l4.553 2.276A1 1 0 0021 21.382V10.618a1 1 0 00-.553-.894L15 7m0 13V7m0 0L9 4"/></svg>
+            Mapbox Map 4 — add your token in the script below
+          </div>
+        </div>
+      </div>
+      <p class="map-source">Data source: [Dataset name] · <a href="#">Link to data</a></p>
+    </div>
+  </section>
+
+  <hr class="divider"/>
+
+  <!-- SECTION 6 · Conclusion -->
+  <section id="conclusion" class="bg-white">
+    <div class="section-inner">
+      <p class="section-label">06 · Conclusion</p>
+      <h2 class="section-title">Key Findings</h2>
+      <hr class="rule"/>
+      <div class="highlight-box">
+        <p>"Replace this with your main takeaway — the single most important insight your project communicates about urban analytics in [your city/region]."</p>
+      </div>
+      <div class="two-col">
+        <div>
+          <h3 style="font-family:var(--heading);font-size:1rem;font-weight:700;margin-bottom:0.75rem;">What We Found</h3>
+          <p style="color:var(--mid);font-weight:300;margin-bottom:1rem;">Summarise what your visualisations reveal about the research topic.</p>
+          <p style="color:var(--mid);font-weight:300;">Further findings or implications.</p>
+        </div>
+        <div>
+          <h3 style="font-family:var(--heading);font-size:1rem;font-weight:700;margin-bottom:0.75rem;">Limitations & Future Work</h3>
+          <p style="color:var(--mid);font-weight:300;margin-bottom:1rem;">Acknowledge data limitations, methodological constraints, and assumptions made.</p>
+          <p style="color:var(--mid);font-weight:300;">Suggest what future research could build on this work.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider"/>
+
+  <!-- SECTION 6 · Team & References -->
+  <section id="team" class="bg-white">
+    <div class="section-inner">
+      <p class="section-label">07 · Team</p>
+      <h2 class="section-title">Meet the Group</h2>
+      <hr class="rule"/>
+      <p class="section-subtitle">Group 9</p>
+
+      <div class="team-grid">
+        <div class="team-card">
+          <div class="team-avatar">A</div>
+          <div class="team-name">Student Name</div>
+          <div class="team-role">Visualisation 1</div>
+          <p class="team-desc">Brief description of contribution — data processing, map design, etc.</p>
+        </div>
+        <div class="team-card">
+          <div class="team-avatar">B</div>
+          <div class="team-name">Student Name</div>
+          <div class="team-role">Visualisation 2</div>
+          <p class="team-desc">Brief description of contribution — analysis, web development, etc.</p>
+        </div>
+        <div class="team-card">
+          <div class="team-avatar">C</div>
+          <div class="team-name">Student Name</div>
+          <div class="team-role">Visualisation 3</div>
+          <p class="team-desc">Brief description of contribution — research, design, writing, etc.</p>
+        </div>
+      </div>
+
+      <div style="margin-top:4rem;">
+        <h3 style="font-family:var(--heading);font-size:1rem;font-weight:700;margin-bottom:0.5rem;">Project Methodology</h3>
+        <hr class="rule" style="margin-bottom:1.25rem;"/>
+        <p style="color:var(--mid);font-weight:300;max-width:700px;">
+          The full ~1000-word methodology summary is on the <a href="about.html">About page</a> or the project GitHub README — including datasets used, data processing steps, and visualisation methods.
+        </p>
+      </div>
+
+      <div style="margin-top:3rem;">
+        <h3 style="font-family:var(--heading);font-size:1rem;font-weight:700;margin-bottom:0.5rem;">References</h3>
+        <hr class="rule" style="margin-bottom:1.25rem;"/>
+        <ul class="ref-list">
+          <li>Author, A. (Year). Title of paper. <em>Journal Name</em>. doi:xxx</li>
+          <li>Author, B. &amp; Author, C. (Year). Title of paper. <em>Journal Name</em>. doi:xxx</li>
+          <li>Dataset Name (Year). Description. Available at: [URL]</li>
+          <li>Libraries used: Mapbox GL JS v3.3.0, [other libraries] — list all per open science guidelines.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <span>© 2025–26 &nbsp;·&nbsp; <span class="accent">CASA0029 Urban Data Visualisation</span> &nbsp;·&nbsp; UCL</span>
+    <span>Group [N]</span>
+  </footer>
+
+  <script>
+    /* Active nav on scroll */
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks  = document.querySelectorAll('.nav-links a');
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          navLinks.forEach(a => a.classList.remove('active'));
+          const link = document.querySelector(`.nav-links a[href="#${entry.target.id}"]`);
+          if (link) link.classList.add('active');
+        }
+      });
+    }, { rootMargin: `-60px 0px -55% 0px` });
+    sections.forEach(s => io.observe(s));
+
+    /* ── Mapbox ─────────────────────────────────────────────
+       1. Replace 'pk.YOUR_TOKEN_HERE' with your public token
+       2. Uncomment the code below
+    ────────────────────────────────────────────────────── */
+    // mapboxgl.accessToken = 'pk.YOUR_TOKEN_HERE';
+
+    // function initMap(id, center, zoom) {
+    //   return new mapboxgl.Map({
+    //     container: id,
+    //     style: 'mapbox://styles/mapbox/light-v11',  // light style fits the design
+    //     center: center,
+    //     zoom: zoom,
+    //     attributionControl: false
+    //   }).addControl(new mapboxgl.AttributionControl({ compact: true }));
+    // }
+    //
+    // const map1 = initMap('mapbox-1', [-0.118, 51.509], 10);
+    // const map2 = initMap('mapbox-2', [-0.118, 51.509], 10);
+    // const map3 = initMap('mapbox-3', [-0.118, 51.509], 10);
+    // const map4 = initMap('mapbox-4', [-0.118, 51.509], 10);
+    //
+    // map1.on('load', () => {
+    //   // map1.addSource('my-data', { type: 'geojson', data: '...' });
+    //   // map1.addLayer({ ... });
+    // });
+  </script>
+
+  <script src="script.js"></script>
+
+</body>
+</html>
