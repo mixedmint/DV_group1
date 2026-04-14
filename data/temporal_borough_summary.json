@@ -1,0 +1,1922 @@
+[
+  {
+    "month_index": 0,
+    "month_key": "202501",
+    "month_label": "Jan",
+    "category_key": "All",
+    "category_label": "All",
+    "london_total_pageviews": 1900025.0,
+    "top5_boroughs": [
+      {
+        "borough": "Westminster",
+        "borough_code": "E09000033",
+        "value": 367965.0,
+        "rank": 1
+      },
+      {
+        "borough": "Hillingdon",
+        "borough_code": "E09000017",
+        "value": 303504.0,
+        "rank": 2
+      },
+      {
+        "borough": "Camden",
+        "borough_code": "E09000007",
+        "value": 168323.0,
+        "rank": 3
+      },
+      {
+        "borough": "Southwark",
+        "borough_code": "E09000028",
+        "value": 156414.0,
+        "rank": 4
+      },
+      {
+        "borough": "Lambeth",
+        "borough_code": "E09000022",
+        "value": 149966.0,
+        "rank": 5
+      }
+    ]
+  },
+  {
+    "month_index": 0,
+    "month_key": "202501",
+    "month_label": "Jan",
+    "category_key": "Cultural_Heritage",
+    "category_label": "Cultural & Heritage",
+    "london_total_pageviews": 1556917.0,
+    "top5_boroughs": [
+      {
+        "borough": "Westminster",
+        "borough_code": "E09000033",
+        "value": 299195.0,
+        "rank": 1
+      },
+      {
+        "borough": "Hillingdon",
+        "borough_code": "E09000017",
+        "value": 262254.0,
+        "rank": 2
+      },
+      {
+        "borough": "Camden",
+        "borough_code": "E09000007",
+        "value": 152312.0,
+        "rank": 3
+      },
+      {
+        "borough": "Southwark",
+        "borough_code": "E09000028",
+        "value": 142095.0,
+        "rank": 4
+      },
+      {
+        "borough": "Hounslow",
+        "borough_code": "E09000018",
+        "value": 126477.0,
+        "rank": 5
+      }
+    ]
+  },
+  {
+    "month_index": 0,
+    "month_key": "202501",
+    "month_label": "Jan",
+    "category_key": "Green_Recreation",
+    "category_label": "Green & Recreation",
+    "london_total_pageviews": 201129.0,
+    "top5_boroughs": [
+      {
+        "borough": "Westminster",
+        "borough_code": "E09000033",
+        "value": 42912.0,
+        "rank": 1
+      },
+      {
+        "borough": "Kingston upon Thames",
+        "borough_code": "E09000021",
+        "value": 31473.0,
+        "rank": 2
+      },
+      {
+        "borough": "Lambeth",
+        "borough_code": "E09000022",
+        "value": 20279.0,
+        "rank": 3
+      },
+      {
+        "borough": "Camden",
+        "borough_code": "E09000007",
+        "value": 15730.0,
+        "rank": 4
+      },
+      {
+        "borough": "Richmond upon Thames",
+        "borough_code": "E09000027",
+        "value": 15464.0,
+        "rank": 5
+      }
+    ]
+  },
+  {
+    "month_index": 0,
+    "month_key": "202501",
+    "month_label": "Jan",
+    "category_key": "Commercial",
+    "category_label": "Commercial",
+    "london_total_pageviews": 141979.0,
+    "top5_boroughs": [
+      {
+        "borough": "Hillingdon",
+        "borough_code": "E09000017",
+        "value": 40727.0,
+        "rank": 1
+      },
+      {
+        "borough": "Westminster",
+        "borough_code": "E09000033",
+        "value": 25858.0,
+        "rank": 2
+      },
+      {
+        "borough": "Lambeth",
+        "borough_code": "E09000022",
+        "value": 12808.0,
+        "rank": 3
+      },
+      {
+        "borough": "Hammersmith and Fulham",
+        "borough_code": "E09000013",
+        "value": 8701.0,
+        "rank": 4
+      },
+      {
+        "borough": "Barnet",
+        "borough_code": "E09000003",
+        "value": 7774.0,
+        "rank": 5
+      }
+    ]
+  },
+  {
+    "month_index": 1,
+    "month_key": "202502",
+    "month_label": "Feb",
+    "category_key": "All",
+    "category_label": "All",
+    "london_total_pageviews": 1591715.0,
+    "top5_boroughs": [
+      {
+        "borough": "Westminster",
+        "borough_code": "E09000033",
+        "value": 360345.0,
+        "rank": 1
+      },
+      {
+        "borough": "Hillingdon",
+        "borough_code": "E09000017",
+        "value": 223559.0,
+        "rank": 2
+      },
+      {
+        "borough": "Camden",
+        "borough_code": "E09000007",
+        "value": 142468.0,
+        "rank": 3
+      },
+      {
+        "borough": "Lambeth",
+        "borough_code": "E09000022",
+        "value": 120360.0,
+        "rank": 4
+      },
+      {
+        "borough": "Hounslow",
+        "borough_code": "E09000018",
+        "value": 113790.0,
+        "rank": 5
+      }
+    ]
+  },
+  {
+    "month_index": 1,
+    "month_key": "202502",
+    "month_label": "Feb",
+    "category_key": "Cultural_Heritage",
+    "category_label": "Cultural & Heritage",
+    "london_total_pageviews": 1246894.0,
+    "top5_boroughs": [
+      {
+        "borough": "Westminster",
+        "borough_code": "E09000033",
+        "value": 260552.0,
+        "rank": 1
+      },
+      {
+        "borough": "Hillingdon",
+        "borough_code": "E09000017",
+        "value": 186122.0,
+        "rank": 2
+      },
+      {
+        "borough": "Camden",
+        "borough_code": "E09000007",
+        "value": 125480.0,
+        "rank": 3
+      },
+      {
+        "borough": "Hounslow",
+        "borough_code": "E09000018",
+        "value": 106738.0,
+        "rank": 4
+      },
+      {
+        "borough": "Southwark",
+        "borough_code": "E09000028",
+        "value": 98524.0,
+        "rank": 5
+      }
+    ]
+  },
+  {
+    "month_index": 1,
+    "month_key": "202502",
+    "month_label": "Feb",
+    "category_key": "Green_Recreation",
+    "category_label": "Green & Recreation",
+    "london_total_pageviews": 225559.0,
+    "top5_boroughs": [
+      {
+        "borough": "Westminster",
+        "borough_code": "E09000033",
+        "value": 77083.0,
+        "rank": 1
+      },
+      {
+        "borough": "Kingston upon Thames",
+        "borough_code": "E09000021",
+        "value": 31918.0,
+        "rank": 2
+      },
+      {
+        "borough": "Lambeth",
+        "borough_code": "E09000022",
+        "value": 17444.0,
+        "rank": 3
+      },
+      {
+        "borough": "Richmond upon Thames",
+        "borough_code": "E09000027",
+        "value": 17198.0,
+        "rank": 4
+      },
+      {
+        "borough": "Camden",
+        "borough_code": "E09000007",
+        "value": 16725.0,
+        "rank": 5
+      }
+    ]
+  },
+  {
+    "month_index": 1,
+    "month_key": "202502",
+    "month_label": "Feb",
+    "category_key": "Commercial",
+    "category_label": "Commercial",
+    "london_total_pageviews": 119262.0,
+    "top5_boroughs": [
+      {
+        "borough": "Hillingdon",
+        "borough_code": "E09000017",
+        "value": 36990.0,
+        "rank": 1
+      },
+      {
+        "borough": "Westminster",
+        "borough_code": "E09000033",
+        "value": 22710.0,
+        "rank": 2
+      },
+      {
+        "borough": "Barnet",
+        "borough_code": "E09000003",
+        "value": 7296.0,
+        "rank": 3
+      },
+      {
+        "borough": "Haringey",
+        "borough_code": "E09000014",
+        "value": 7136.0,
+        "rank": 4
+      },
+      {
+        "borough": "Lambeth",
+        "borough_code": "E09000022",
+        "value": 6805.0,
+        "rank": 5
+      }
+    ]
+  },
+  {
+    "month_index": 2,
+    "month_key": "202503",
+    "month_label": "Mar",
+    "category_key": "All",
+    "category_label": "All",
+    "london_total_pageviews": 1720508.0,
+    "top5_boroughs": [
+      {
+        "borough": "Westminster",
+        "borough_code": "E09000033",
+        "value": 351858.0,
+        "rank": 1
+      },
+      {
+        "borough": "Hillingdon",
+        "borough_code": "E09000017",
+        "value": 220757.0,
+        "rank": 2
+      },
+      {
+        "borough": "Camden",
+        "borough_code": "E09000007",
+        "value": 165211.0,
+        "rank": 3
+      },
+      {
+        "borough": "Hounslow",
+        "borough_code": "E09000018",
+        "value": 139425.0,
+        "rank": 4
+      },
+      {
+        "borough": "Lambeth",
+        "borough_code": "E09000022",
+        "value": 137379.0,
+        "rank": 5
+      }
+    ]
+  },
+  {
+    "month_index": 2,
+    "month_key": "202503",
+    "month_label": "Mar",
+    "category_key": "Cultural_Heritage",
+    "category_label": "Cultural & Heritage",
+    "london_total_pageviews": 1381639.0,
+    "top5_boroughs": [
+      {
+        "borough": "Westminster",
+        "borough_code": "E09000033",
+        "value": 288651.0,
+        "rank": 1
+      },
+      {
+        "borough": "Hillingdon",
+        "borough_code": "E09000017",
+        "value": 177843.0,
+        "rank": 2
+      },
+      {
+        "borough": "Camden",
+        "borough_code": "E09000007",
+        "value": 148168.0,
+        "rank": 3
+      },
+      {
+        "borough": "Hounslow",
+        "borough_code": "E09000018",
+        "value": 131397.0,
+        "rank": 4
+      },
+      {
+        "borough": "Lambeth",
+        "borough_code": "E09000022",
+        "value": 111044.0,
+        "rank": 5
+      }
+    ]
+  },
+  {
+    "month_index": 2,
+    "month_key": "202503",
+    "month_label": "Mar",
+    "category_key": "Green_Recreation",
+    "category_label": "Green & Recreation",
+    "london_total_pageviews": 204269.0,
+    "top5_boroughs": [
+      {
+        "borough": "Westminster",
+        "borough_code": "E09000033",
+        "value": 38345.0,
+        "rank": 1
+      },
+      {
+        "borough": "Kingston upon Thames",
+        "borough_code": "E09000021",
+        "value": 33655.0,
+        "rank": 2
+      },
+      {
+        "borough": "Lambeth",
+        "borough_code": "E09000022",
+        "value": 19141.0,
+        "rank": 3
+      },
+      {
+        "borough": "Richmond upon Thames",
+        "borough_code": "E09000027",
+        "value": 16791.0,
+        "rank": 4
+      },
+      {
+        "borough": "Camden",
+        "borough_code": "E09000007",
+        "value": 16748.0,
+        "rank": 5
+      }
+    ]
+  },
+  {
+    "month_index": 2,
+    "month_key": "202503",
+    "month_label": "Mar",
+    "category_key": "Commercial",
+    "category_label": "Commercial",
+    "london_total_pageviews": 134600.0,
+    "top5_boroughs": [
+      {
+        "borough": "Hillingdon",
+        "borough_code": "E09000017",
+        "value": 42369.0,
+        "rank": 1
+      },
+      {
+        "borough": "Westminster",
+        "borough_code": "E09000033",
+        "value": 24862.0,
+        "rank": 2
+      },
+      {
+        "borough": "Haringey",
+        "borough_code": "E09000014",
+        "value": 8003.0,
+        "rank": 3
+      },
+      {
+        "borough": "Kingston upon Thames",
+        "borough_code": "E09000021",
+        "value": 7510.0,
+        "rank": 4
+      },
+      {
+        "borough": "Barnet",
+        "borough_code": "E09000003",
+        "value": 7346.0,
+        "rank": 5
+      }
+    ]
+  },
+  {
+    "month_index": 3,
+    "month_key": "202504",
+    "month_label": "Apr",
+    "category_key": "All",
+    "category_label": "All",
+    "london_total_pageviews": 1615911.0,
+    "top5_boroughs": [
+      {
+        "borough": "Westminster",
+        "borough_code": "E09000033",
+        "value": 338515.0,
+        "rank": 1
+      },
+      {
+        "borough": "Hillingdon",
+        "borough_code": "E09000017",
+        "value": 180391.0,
+        "rank": 2
+      },
+      {
+        "borough": "Hounslow",
+        "borough_code": "E09000018",
+        "value": 150064.0,
+        "rank": 3
+      },
+      {
+        "borough": "Camden",
+        "borough_code": "E09000007",
+        "value": 147131.0,
+        "rank": 4
+      },
+      {
+        "borough": "Lambeth",
+        "borough_code": "E09000022",
+        "value": 146335.0,
+        "rank": 5
+      }
+    ]
+  },
+  {
+    "month_index": 3,
+    "month_key": "202504",
+    "month_label": "Apr",
+    "category_key": "Cultural_Heritage",
+    "category_label": "Cultural & Heritage",
+    "london_total_pageviews": 1315365.0,
+    "top5_boroughs": [
+      {
+        "borough": "Westminster",
+        "borough_code": "E09000033",
+        "value": 282381.0,
+        "rank": 1
+      },
+      {
+        "borough": "Hillingdon",
+        "borough_code": "E09000017",
+        "value": 150754.0,
+        "rank": 2
+      },
+      {
+        "borough": "Hounslow",
+        "borough_code": "E09000018",
+        "value": 143264.0,
+        "rank": 3
+      },
+      {
+        "borough": "Camden",
+        "borough_code": "E09000007",
+        "value": 132341.0,
+        "rank": 4
+      },
+      {
+        "borough": "Lambeth",
+        "borough_code": "E09000022",
+        "value": 122354.0,
+        "rank": 5
+      }
+    ]
+  },
+  {
+    "month_index": 3,
+    "month_key": "202504",
+    "month_label": "Apr",
+    "category_key": "Green_Recreation",
+    "category_label": "Green & Recreation",
+    "london_total_pageviews": 191518.0,
+    "top5_boroughs": [
+      {
+        "borough": "Westminster",
+        "borough_code": "E09000033",
+        "value": 32216.0,
+        "rank": 1
+      },
+      {
+        "borough": "Kingston upon Thames",
+        "borough_code": "E09000021",
+        "value": 32129.0,
+        "rank": 2
+      },
+      {
+        "borough": "Southwark",
+        "borough_code": "E09000028",
+        "value": 19692.0,
+        "rank": 3
+      },
+      {
+        "borough": "Lambeth",
+        "borough_code": "E09000022",
+        "value": 17382.0,
+        "rank": 4
+      },
+      {
+        "borough": "Richmond upon Thames",
+        "borough_code": "E09000027",
+        "value": 16765.0,
+        "rank": 5
+      }
+    ]
+  },
+  {
+    "month_index": 3,
+    "month_key": "202504",
+    "month_label": "Apr",
+    "category_key": "Commercial",
+    "category_label": "Commercial",
+    "london_total_pageviews": 109028.0,
+    "top5_boroughs": [
+      {
+        "borough": "Hillingdon",
+        "borough_code": "E09000017",
+        "value": 29180.0,
+        "rank": 1
+      },
+      {
+        "borough": "Westminster",
+        "borough_code": "E09000033",
+        "value": 23918.0,
+        "rank": 2
+      },
+      {
+        "borough": "Lambeth",
+        "borough_code": "E09000022",
+        "value": 6599.0,
+        "rank": 3
+      },
+      {
+        "borough": "Hammersmith and Fulham",
+        "borough_code": "E09000013",
+        "value": 6323.0,
+        "rank": 4
+      },
+      {
+        "borough": "Barnet",
+        "borough_code": "E09000003",
+        "value": 6188.0,
+        "rank": 5
+      }
+    ]
+  },
+  {
+    "month_index": 4,
+    "month_key": "202505",
+    "month_label": "May",
+    "category_key": "All",
+    "category_label": "All",
+    "london_total_pageviews": 1595965.0,
+    "top5_boroughs": [
+      {
+        "borough": "Westminster",
+        "borough_code": "E09000033",
+        "value": 330237.0,
+        "rank": 1
+      },
+      {
+        "borough": "Hillingdon",
+        "borough_code": "E09000017",
+        "value": 166825.0,
+        "rank": 2
+      },
+      {
+        "borough": "Camden",
+        "borough_code": "E09000007",
+        "value": 157767.0,
+        "rank": 3
+      },
+      {
+        "borough": "Lambeth",
+        "borough_code": "E09000022",
+        "value": 150560.0,
+        "rank": 4
+      },
+      {
+        "borough": "Hounslow",
+        "borough_code": "E09000018",
+        "value": 144886.0,
+        "rank": 5
+      }
+    ]
+  },
+  {
+    "month_index": 4,
+    "month_key": "202505",
+    "month_label": "May",
+    "category_key": "Cultural_Heritage",
+    "category_label": "Cultural & Heritage",
+    "london_total_pageviews": 1292692.0,
+    "top5_boroughs": [
+      {
+        "borough": "Westminster",
+        "borough_code": "E09000033",
+        "value": 273954.0,
+        "rank": 1
+      },
+      {
+        "borough": "Camden",
+        "borough_code": "E09000007",
+        "value": 142926.0,
+        "rank": 2
+      },
+      {
+        "borough": "Hounslow",
+        "borough_code": "E09000018",
+        "value": 138075.0,
+        "rank": 3
+      },
+      {
+        "borough": "Hillingdon",
+        "borough_code": "E09000017",
+        "value": 137837.0,
+        "rank": 4
+      },
+      {
+        "borough": "Lambeth",
+        "borough_code": "E09000022",
+        "value": 125783.0,
+        "rank": 5
+      }
+    ]
+  },
+  {
+    "month_index": 4,
+    "month_key": "202505",
+    "month_label": "May",
+    "category_key": "Green_Recreation",
+    "category_label": "Green & Recreation",
+    "london_total_pageviews": 195706.0,
+    "top5_boroughs": [
+      {
+        "borough": "Kingston upon Thames",
+        "borough_code": "E09000021",
+        "value": 40724.0,
+        "rank": 1
+      },
+      {
+        "borough": "Westminster",
+        "borough_code": "E09000033",
+        "value": 33818.0,
+        "rank": 2
+      },
+      {
+        "borough": "Lambeth",
+        "borough_code": "E09000022",
+        "value": 18214.0,
+        "rank": 3
+      },
+      {
+        "borough": "Richmond upon Thames",
+        "borough_code": "E09000027",
+        "value": 17961.0,
+        "rank": 4
+      },
+      {
+        "borough": "Camden",
+        "borough_code": "E09000007",
+        "value": 14291.0,
+        "rank": 5
+      }
+    ]
+  },
+  {
+    "month_index": 4,
+    "month_key": "202505",
+    "month_label": "May",
+    "category_key": "Commercial",
+    "category_label": "Commercial",
+    "london_total_pageviews": 107567.0,
+    "top5_boroughs": [
+      {
+        "borough": "Hillingdon",
+        "borough_code": "E09000017",
+        "value": 28543.0,
+        "rank": 1
+      },
+      {
+        "borough": "Westminster",
+        "borough_code": "E09000033",
+        "value": 22465.0,
+        "rank": 2
+      },
+      {
+        "borough": "Lambeth",
+        "borough_code": "E09000022",
+        "value": 6563.0,
+        "rank": 3
+      },
+      {
+        "borough": "Barnet",
+        "borough_code": "E09000003",
+        "value": 6315.0,
+        "rank": 4
+      },
+      {
+        "borough": "Haringey",
+        "borough_code": "E09000014",
+        "value": 5776.0,
+        "rank": 5
+      }
+    ]
+  },
+  {
+    "month_index": 5,
+    "month_key": "202506",
+    "month_label": "Jun",
+    "category_key": "All",
+    "category_label": "All",
+    "london_total_pageviews": 1407819.0,
+    "top5_boroughs": [
+      {
+        "borough": "Westminster",
+        "borough_code": "E09000033",
+        "value": 296163.0,
+        "rank": 1
+      },
+      {
+        "borough": "Camden",
+        "borough_code": "E09000007",
+        "value": 148059.0,
+        "rank": 2
+      },
+      {
+        "borough": "Hillingdon",
+        "borough_code": "E09000017",
+        "value": 146152.0,
+        "rank": 3
+      },
+      {
+        "borough": "Southwark",
+        "borough_code": "E09000028",
+        "value": 115872.0,
+        "rank": 4
+      },
+      {
+        "borough": "Lambeth",
+        "borough_code": "E09000022",
+        "value": 113586.0,
+        "rank": 5
+      }
+    ]
+  },
+  {
+    "month_index": 5,
+    "month_key": "202506",
+    "month_label": "Jun",
+    "category_key": "Cultural_Heritage",
+    "category_label": "Cultural & Heritage",
+    "london_total_pageviews": 1136128.0,
+    "top5_boroughs": [
+      {
+        "borough": "Westminster",
+        "borough_code": "E09000033",
+        "value": 246462.0,
+        "rank": 1
+      },
+      {
+        "borough": "Camden",
+        "borough_code": "E09000007",
+        "value": 133134.0,
+        "rank": 2
+      },
+      {
+        "borough": "Hillingdon",
+        "borough_code": "E09000017",
+        "value": 117351.0,
+        "rank": 3
+      },
+      {
+        "borough": "Southwark",
+        "borough_code": "E09000028",
+        "value": 104895.0,
+        "rank": 4
+      },
+      {
+        "borough": "Hounslow",
+        "borough_code": "E09000018",
+        "value": 91312.0,
+        "rank": 5
+      }
+    ]
+  },
+  {
+    "month_index": 5,
+    "month_key": "202506",
+    "month_label": "Jun",
+    "category_key": "Green_Recreation",
+    "category_label": "Green & Recreation",
+    "london_total_pageviews": 171291.0,
+    "top5_boroughs": [
+      {
+        "borough": "Kingston upon Thames",
+        "borough_code": "E09000021",
+        "value": 34114.0,
+        "rank": 1
+      },
+      {
+        "borough": "Westminster",
+        "borough_code": "E09000033",
+        "value": 28549.0,
+        "rank": 2
+      },
+      {
+        "borough": "Lambeth",
+        "borough_code": "E09000022",
+        "value": 16284.0,
+        "rank": 3
+      },
+      {
+        "borough": "Camden",
+        "borough_code": "E09000007",
+        "value": 14750.0,
+        "rank": 4
+      },
+      {
+        "borough": "Richmond upon Thames",
+        "borough_code": "E09000027",
+        "value": 14364.0,
+        "rank": 5
+      }
+    ]
+  },
+  {
+    "month_index": 5,
+    "month_key": "202506",
+    "month_label": "Jun",
+    "category_key": "Commercial",
+    "category_label": "Commercial",
+    "london_total_pageviews": 100400.0,
+    "top5_boroughs": [
+      {
+        "borough": "Hillingdon",
+        "borough_code": "E09000017",
+        "value": 28365.0,
+        "rank": 1
+      },
+      {
+        "borough": "Westminster",
+        "borough_code": "E09000033",
+        "value": 21152.0,
+        "rank": 2
+      },
+      {
+        "borough": "Lambeth",
+        "borough_code": "E09000022",
+        "value": 6035.0,
+        "rank": 3
+      },
+      {
+        "borough": "Hammersmith and Fulham",
+        "borough_code": "E09000013",
+        "value": 5833.0,
+        "rank": 4
+      },
+      {
+        "borough": "Haringey",
+        "borough_code": "E09000014",
+        "value": 5739.0,
+        "rank": 5
+      }
+    ]
+  },
+  {
+    "month_index": 6,
+    "month_key": "202507",
+    "month_label": "Jul",
+    "category_key": "All",
+    "category_label": "All",
+    "london_total_pageviews": 1486335.0,
+    "top5_boroughs": [
+      {
+        "borough": "Westminster",
+        "borough_code": "E09000033",
+        "value": 343049.0,
+        "rank": 1
+      },
+      {
+        "borough": "Hillingdon",
+        "borough_code": "E09000017",
+        "value": 149802.0,
+        "rank": 2
+      },
+      {
+        "borough": "Lambeth",
+        "borough_code": "E09000022",
+        "value": 138946.0,
+        "rank": 3
+      },
+      {
+        "borough": "Camden",
+        "borough_code": "E09000007",
+        "value": 132426.0,
+        "rank": 4
+      },
+      {
+        "borough": "Southwark",
+        "borough_code": "E09000028",
+        "value": 120918.0,
+        "rank": 5
+      }
+    ]
+  },
+  {
+    "month_index": 6,
+    "month_key": "202507",
+    "month_label": "Jul",
+    "category_key": "Cultural_Heritage",
+    "category_label": "Cultural & Heritage",
+    "london_total_pageviews": 1187681.0,
+    "top5_boroughs": [
+      {
+        "borough": "Westminster",
+        "borough_code": "E09000033",
+        "value": 283998.0,
+        "rank": 1
+      },
+      {
+        "borough": "Hillingdon",
+        "borough_code": "E09000017",
+        "value": 121737.0,
+        "rank": 2
+      },
+      {
+        "borough": "Camden",
+        "borough_code": "E09000007",
+        "value": 116987.0,
+        "rank": 3
+      },
+      {
+        "borough": "Lambeth",
+        "borough_code": "E09000022",
+        "value": 110328.0,
+        "rank": 4
+      },
+      {
+        "borough": "Southwark",
+        "borough_code": "E09000028",
+        "value": 108048.0,
+        "rank": 5
+      }
+    ]
+  },
+  {
+    "month_index": 6,
+    "month_key": "202507",
+    "month_label": "Jul",
+    "category_key": "Green_Recreation",
+    "category_label": "Green & Recreation",
+    "london_total_pageviews": 189305.0,
+    "top5_boroughs": [
+      {
+        "borough": "Westminster",
+        "borough_code": "E09000033",
+        "value": 33918.0,
+        "rank": 1
+      },
+      {
+        "borough": "Kingston upon Thames",
+        "borough_code": "E09000021",
+        "value": 29742.0,
+        "rank": 2
+      },
+      {
+        "borough": "Lambeth",
+        "borough_code": "E09000022",
+        "value": 22919.0,
+        "rank": 3
+      },
+      {
+        "borough": "Richmond upon Thames",
+        "borough_code": "E09000027",
+        "value": 17067.0,
+        "rank": 4
+      },
+      {
+        "borough": "Camden",
+        "borough_code": "E09000007",
+        "value": 15213.0,
+        "rank": 5
+      }
+    ]
+  },
+  {
+    "month_index": 6,
+    "month_key": "202507",
+    "month_label": "Jul",
+    "category_key": "Commercial",
+    "category_label": "Commercial",
+    "london_total_pageviews": 109349.0,
+    "top5_boroughs": [
+      {
+        "borough": "Hillingdon",
+        "borough_code": "E09000017",
+        "value": 27627.0,
+        "rank": 1
+      },
+      {
+        "borough": "Westminster",
+        "borough_code": "E09000033",
+        "value": 25133.0,
+        "rank": 2
+      },
+      {
+        "borough": "Hammersmith and Fulham",
+        "borough_code": "E09000013",
+        "value": 9321.0,
+        "rank": 3
+      },
+      {
+        "borough": "Barnet",
+        "borough_code": "E09000003",
+        "value": 6409.0,
+        "rank": 4
+      },
+      {
+        "borough": "City of London",
+        "borough_code": "E09000001",
+        "value": 5749.0,
+        "rank": 5
+      }
+    ]
+  },
+  {
+    "month_index": 7,
+    "month_key": "202508",
+    "month_label": "Aug",
+    "category_key": "All",
+    "category_label": "All",
+    "london_total_pageviews": 1586364.0,
+    "top5_boroughs": [
+      {
+        "borough": "Westminster",
+        "borough_code": "E09000033",
+        "value": 372459.0,
+        "rank": 1
+      },
+      {
+        "borough": "Hillingdon",
+        "borough_code": "E09000017",
+        "value": 150721.0,
+        "rank": 2
+      },
+      {
+        "borough": "Southwark",
+        "borough_code": "E09000028",
+        "value": 148929.0,
+        "rank": 3
+      },
+      {
+        "borough": "Camden",
+        "borough_code": "E09000007",
+        "value": 145946.0,
+        "rank": 4
+      },
+      {
+        "borough": "Lambeth",
+        "borough_code": "E09000022",
+        "value": 130668.0,
+        "rank": 5
+      }
+    ]
+  },
+  {
+    "month_index": 7,
+    "month_key": "202508",
+    "month_label": "Aug",
+    "category_key": "Cultural_Heritage",
+    "category_label": "Cultural & Heritage",
+    "london_total_pageviews": 1257175.0,
+    "top5_boroughs": [
+      {
+        "borough": "Westminster",
+        "borough_code": "E09000033",
+        "value": 295588.0,
+        "rank": 1
+      },
+      {
+        "borough": "Southwark",
+        "borough_code": "E09000028",
+        "value": 134800.0,
+        "rank": 2
+      },
+      {
+        "borough": "Camden",
+        "borough_code": "E09000007",
+        "value": 130942.0,
+        "rank": 3
+      },
+      {
+        "borough": "Hillingdon",
+        "borough_code": "E09000017",
+        "value": 119349.0,
+        "rank": 4
+      },
+      {
+        "borough": "Lambeth",
+        "borough_code": "E09000022",
+        "value": 102357.0,
+        "rank": 5
+      }
+    ]
+  },
+  {
+    "month_index": 7,
+    "month_key": "202508",
+    "month_label": "Aug",
+    "category_key": "Green_Recreation",
+    "category_label": "Green & Recreation",
+    "london_total_pageviews": 210376.0,
+    "top5_boroughs": [
+      {
+        "borough": "Westminster",
+        "borough_code": "E09000033",
+        "value": 47839.0,
+        "rank": 1
+      },
+      {
+        "borough": "Kingston upon Thames",
+        "borough_code": "E09000021",
+        "value": 32170.0,
+        "rank": 2
+      },
+      {
+        "borough": "Lambeth",
+        "borough_code": "E09000022",
+        "value": 21597.0,
+        "rank": 3
+      },
+      {
+        "borough": "Richmond upon Thames",
+        "borough_code": "E09000027",
+        "value": 17073.0,
+        "rank": 4
+      },
+      {
+        "borough": "Camden",
+        "borough_code": "E09000007",
+        "value": 14753.0,
+        "rank": 5
+      }
+    ]
+  },
+  {
+    "month_index": 7,
+    "month_key": "202508",
+    "month_label": "Aug",
+    "category_key": "Commercial",
+    "category_label": "Commercial",
+    "london_total_pageviews": 118813.0,
+    "top5_boroughs": [
+      {
+        "borough": "Hillingdon",
+        "borough_code": "E09000017",
+        "value": 30663.0,
+        "rank": 1
+      },
+      {
+        "borough": "Westminster",
+        "borough_code": "E09000033",
+        "value": 29032.0,
+        "rank": 2
+      },
+      {
+        "borough": "Hammersmith and Fulham",
+        "borough_code": "E09000013",
+        "value": 7766.0,
+        "rank": 3
+      },
+      {
+        "borough": "Barnet",
+        "borough_code": "E09000003",
+        "value": 6787.0,
+        "rank": 4
+      },
+      {
+        "borough": "Lambeth",
+        "borough_code": "E09000022",
+        "value": 6714.0,
+        "rank": 5
+      }
+    ]
+  },
+  {
+    "month_index": 8,
+    "month_key": "202509",
+    "month_label": "Sep",
+    "category_key": "All",
+    "category_label": "All",
+    "london_total_pageviews": 1794236.0,
+    "top5_boroughs": [
+      {
+        "borough": "Westminster",
+        "borough_code": "E09000033",
+        "value": 397149.0,
+        "rank": 1
+      },
+      {
+        "borough": "Hillingdon",
+        "borough_code": "E09000017",
+        "value": 263896.0,
+        "rank": 2
+      },
+      {
+        "borough": "Tower Hamlets",
+        "borough_code": "E09000030",
+        "value": 247365.0,
+        "rank": 3
+      },
+      {
+        "borough": "Camden",
+        "borough_code": "E09000007",
+        "value": 132923.0,
+        "rank": 4
+      },
+      {
+        "borough": "Lambeth",
+        "borough_code": "E09000022",
+        "value": 126942.0,
+        "rank": 5
+      }
+    ]
+  },
+  {
+    "month_index": 8,
+    "month_key": "202509",
+    "month_label": "Sep",
+    "category_key": "Cultural_Heritage",
+    "category_label": "Cultural & Heritage",
+    "london_total_pageviews": 1513919.0,
+    "top5_boroughs": [
+      {
+        "borough": "Westminster",
+        "borough_code": "E09000033",
+        "value": 343727.0,
+        "rank": 1
+      },
+      {
+        "borough": "Hillingdon",
+        "borough_code": "E09000017",
+        "value": 234973.0,
+        "rank": 2
+      },
+      {
+        "borough": "Tower Hamlets",
+        "borough_code": "E09000030",
+        "value": 234907.0,
+        "rank": 3
+      },
+      {
+        "borough": "Camden",
+        "borough_code": "E09000007",
+        "value": 119654.0,
+        "rank": 4
+      },
+      {
+        "borough": "Southwark",
+        "borough_code": "E09000028",
+        "value": 105918.0,
+        "rank": 5
+      }
+    ]
+  },
+  {
+    "month_index": 8,
+    "month_key": "202509",
+    "month_label": "Sep",
+    "category_key": "Green_Recreation",
+    "category_label": "Green & Recreation",
+    "london_total_pageviews": 172340.0,
+    "top5_boroughs": [
+      {
+        "borough": "Westminster",
+        "borough_code": "E09000033",
+        "value": 30170.0,
+        "rank": 1
+      },
+      {
+        "borough": "Kingston upon Thames",
+        "borough_code": "E09000021",
+        "value": 25747.0,
+        "rank": 2
+      },
+      {
+        "borough": "Lambeth",
+        "borough_code": "E09000022",
+        "value": 22155.0,
+        "rank": 3
+      },
+      {
+        "borough": "Richmond upon Thames",
+        "borough_code": "E09000027",
+        "value": 14187.0,
+        "rank": 4
+      },
+      {
+        "borough": "Camden",
+        "borough_code": "E09000007",
+        "value": 13045.0,
+        "rank": 5
+      }
+    ]
+  },
+  {
+    "month_index": 8,
+    "month_key": "202509",
+    "month_label": "Sep",
+    "category_key": "Commercial",
+    "category_label": "Commercial",
+    "london_total_pageviews": 107977.0,
+    "top5_boroughs": [
+      {
+        "borough": "Hillingdon",
+        "borough_code": "E09000017",
+        "value": 28361.0,
+        "rank": 1
+      },
+      {
+        "borough": "Westminster",
+        "borough_code": "E09000033",
+        "value": 23252.0,
+        "rank": 2
+      },
+      {
+        "borough": "Lambeth",
+        "borough_code": "E09000022",
+        "value": 6788.0,
+        "rank": 3
+      },
+      {
+        "borough": "Kingston upon Thames",
+        "borough_code": "E09000021",
+        "value": 6599.0,
+        "rank": 4
+      },
+      {
+        "borough": "Hammersmith and Fulham",
+        "borough_code": "E09000013",
+        "value": 6098.0,
+        "rank": 5
+      }
+    ]
+  },
+  {
+    "month_index": 9,
+    "month_key": "202510",
+    "month_label": "Oct",
+    "category_key": "All",
+    "category_label": "All",
+    "london_total_pageviews": 1769256.0,
+    "top5_boroughs": [
+      {
+        "borough": "Westminster",
+        "borough_code": "E09000033",
+        "value": 447088.0,
+        "rank": 1
+      },
+      {
+        "borough": "Hillingdon",
+        "borough_code": "E09000017",
+        "value": 197952.0,
+        "rank": 2
+      },
+      {
+        "borough": "Lambeth",
+        "borough_code": "E09000022",
+        "value": 180602.0,
+        "rank": 3
+      },
+      {
+        "borough": "Camden",
+        "borough_code": "E09000007",
+        "value": 134873.0,
+        "rank": 4
+      },
+      {
+        "borough": "Southwark",
+        "borough_code": "E09000028",
+        "value": 115919.0,
+        "rank": 5
+      }
+    ]
+  },
+  {
+    "month_index": 9,
+    "month_key": "202510",
+    "month_label": "Oct",
+    "category_key": "Cultural_Heritage",
+    "category_label": "Cultural & Heritage",
+    "london_total_pageviews": 1423306.0,
+    "top5_boroughs": [
+      {
+        "borough": "Westminster",
+        "borough_code": "E09000033",
+        "value": 383381.0,
+        "rank": 1
+      },
+      {
+        "borough": "Hillingdon",
+        "borough_code": "E09000017",
+        "value": 169489.0,
+        "rank": 2
+      },
+      {
+        "borough": "Lambeth",
+        "borough_code": "E09000022",
+        "value": 144774.0,
+        "rank": 3
+      },
+      {
+        "borough": "Camden",
+        "borough_code": "E09000007",
+        "value": 120301.0,
+        "rank": 4
+      },
+      {
+        "borough": "Southwark",
+        "borough_code": "E09000028",
+        "value": 104029.0,
+        "rank": 5
+      }
+    ]
+  },
+  {
+    "month_index": 9,
+    "month_key": "202510",
+    "month_label": "Oct",
+    "category_key": "Green_Recreation",
+    "category_label": "Green & Recreation",
+    "london_total_pageviews": 236490.0,
+    "top5_boroughs": [
+      {
+        "borough": "Harrow",
+        "borough_code": "E09000015",
+        "value": 50977.0,
+        "rank": 1
+      },
+      {
+        "borough": "Westminster",
+        "borough_code": "E09000033",
+        "value": 40041.0,
+        "rank": 2
+      },
+      {
+        "borough": "Lambeth",
+        "borough_code": "E09000022",
+        "value": 29029.0,
+        "rank": 3
+      },
+      {
+        "borough": "Kingston upon Thames",
+        "borough_code": "E09000021",
+        "value": 24939.0,
+        "rank": 4
+      },
+      {
+        "borough": "Richmond upon Thames",
+        "borough_code": "E09000027",
+        "value": 14409.0,
+        "rank": 5
+      }
+    ]
+  },
+  {
+    "month_index": 9,
+    "month_key": "202510",
+    "month_label": "Oct",
+    "category_key": "Commercial",
+    "category_label": "Commercial",
+    "london_total_pageviews": 109460.0,
+    "top5_boroughs": [
+      {
+        "borough": "Hillingdon",
+        "borough_code": "E09000017",
+        "value": 27602.0,
+        "rank": 1
+      },
+      {
+        "borough": "Westminster",
+        "borough_code": "E09000033",
+        "value": 23666.0,
+        "rank": 2
+      },
+      {
+        "borough": "Hammersmith and Fulham",
+        "borough_code": "E09000013",
+        "value": 7095.0,
+        "rank": 3
+      },
+      {
+        "borough": "Lambeth",
+        "borough_code": "E09000022",
+        "value": 6799.0,
+        "rank": 4
+      },
+      {
+        "borough": "City of London",
+        "borough_code": "E09000001",
+        "value": 6513.0,
+        "rank": 5
+      }
+    ]
+  },
+  {
+    "month_index": 10,
+    "month_key": "202511",
+    "month_label": "Nov",
+    "category_key": "All",
+    "category_label": "All",
+    "london_total_pageviews": 1827143.0,
+    "top5_boroughs": [
+      {
+        "borough": "Westminster",
+        "borough_code": "E09000033",
+        "value": 366348.0,
+        "rank": 1
+      },
+      {
+        "borough": "Tower Hamlets",
+        "borough_code": "E09000030",
+        "value": 284100.0,
+        "rank": 2
+      },
+      {
+        "borough": "Hillingdon",
+        "borough_code": "E09000017",
+        "value": 163965.0,
+        "rank": 3
+      },
+      {
+        "borough": "Camden",
+        "borough_code": "E09000007",
+        "value": 133101.0,
+        "rank": 4
+      },
+      {
+        "borough": "Lambeth",
+        "borough_code": "E09000022",
+        "value": 131523.0,
+        "rank": 5
+      }
+    ]
+  },
+  {
+    "month_index": 10,
+    "month_key": "202511",
+    "month_label": "Nov",
+    "category_key": "Cultural_Heritage",
+    "category_label": "Cultural & Heritage",
+    "london_total_pageviews": 1517740.0,
+    "top5_boroughs": [
+      {
+        "borough": "Westminster",
+        "borough_code": "E09000033",
+        "value": 295976.0,
+        "rank": 1
+      },
+      {
+        "borough": "Tower Hamlets",
+        "borough_code": "E09000030",
+        "value": 271702.0,
+        "rank": 2
+      },
+      {
+        "borough": "Hillingdon",
+        "borough_code": "E09000017",
+        "value": 128440.0,
+        "rank": 3
+      },
+      {
+        "borough": "Camden",
+        "borough_code": "E09000007",
+        "value": 120590.0,
+        "rank": 4
+      },
+      {
+        "borough": "Southwark",
+        "borough_code": "E09000028",
+        "value": 113042.0,
+        "rank": 5
+      }
+    ]
+  },
+  {
+    "month_index": 10,
+    "month_key": "202511",
+    "month_label": "Nov",
+    "category_key": "Green_Recreation",
+    "category_label": "Green & Recreation",
+    "london_total_pageviews": 192170.0,
+    "top5_boroughs": [
+      {
+        "borough": "Westminster",
+        "borough_code": "E09000033",
+        "value": 47574.0,
+        "rank": 1
+      },
+      {
+        "borough": "Kingston upon Thames",
+        "borough_code": "E09000021",
+        "value": 21248.0,
+        "rank": 2
+      },
+      {
+        "borough": "Harrow",
+        "borough_code": "E09000015",
+        "value": 18412.0,
+        "rank": 3
+      },
+      {
+        "borough": "Lambeth",
+        "borough_code": "E09000022",
+        "value": 17932.0,
+        "rank": 4
+      },
+      {
+        "borough": "Richmond upon Thames",
+        "borough_code": "E09000027",
+        "value": 12771.0,
+        "rank": 5
+      }
+    ]
+  },
+  {
+    "month_index": 10,
+    "month_key": "202511",
+    "month_label": "Nov",
+    "category_key": "Commercial",
+    "category_label": "Commercial",
+    "london_total_pageviews": 117233.0,
+    "top5_boroughs": [
+      {
+        "borough": "Hillingdon",
+        "borough_code": "E09000017",
+        "value": 34983.0,
+        "rank": 1
+      },
+      {
+        "borough": "Westminster",
+        "borough_code": "E09000033",
+        "value": 22798.0,
+        "rank": 2
+      },
+      {
+        "borough": "City of London",
+        "borough_code": "E09000001",
+        "value": 8109.0,
+        "rank": 3
+      },
+      {
+        "borough": "Hammersmith and Fulham",
+        "borough_code": "E09000013",
+        "value": 6761.0,
+        "rank": 4
+      },
+      {
+        "borough": "Lambeth",
+        "borough_code": "E09000022",
+        "value": 6456.0,
+        "rank": 5
+      }
+    ]
+  },
+  {
+    "month_index": 11,
+    "month_key": "202512",
+    "month_label": "Dec",
+    "category_key": "All",
+    "category_label": "All",
+    "london_total_pageviews": 2042359.0,
+    "top5_boroughs": [
+      {
+        "borough": "Haringey",
+        "borough_code": "E09000014",
+        "value": 482677.0,
+        "rank": 1
+      },
+      {
+        "borough": "Westminster",
+        "borough_code": "E09000033",
+        "value": 394736.0,
+        "rank": 2
+      },
+      {
+        "borough": "Hillingdon",
+        "borough_code": "E09000017",
+        "value": 208854.0,
+        "rank": 3
+      },
+      {
+        "borough": "Camden",
+        "borough_code": "E09000007",
+        "value": 140217.0,
+        "rank": 4
+      },
+      {
+        "borough": "Lambeth",
+        "borough_code": "E09000022",
+        "value": 129880.0,
+        "rank": 5
+      }
+    ]
+  },
+  {
+    "month_index": 11,
+    "month_key": "202512",
+    "month_label": "Dec",
+    "category_key": "Cultural_Heritage",
+    "category_label": "Cultural & Heritage",
+    "london_total_pageviews": 1701428.0,
+    "top5_boroughs": [
+      {
+        "borough": "Haringey",
+        "borough_code": "E09000014",
+        "value": 475797.0,
+        "rank": 1
+      },
+      {
+        "borough": "Westminster",
+        "borough_code": "E09000033",
+        "value": 288432.0,
+        "rank": 2
+      },
+      {
+        "borough": "Hillingdon",
+        "borough_code": "E09000017",
+        "value": 165854.0,
+        "rank": 3
+      },
+      {
+        "borough": "Camden",
+        "borough_code": "E09000007",
+        "value": 126960.0,
+        "rank": 4
+      },
+      {
+        "borough": "Southwark",
+        "borough_code": "E09000028",
+        "value": 108654.0,
+        "rank": 5
+      }
+    ]
+  },
+  {
+    "month_index": 11,
+    "month_key": "202512",
+    "month_label": "Dec",
+    "category_key": "Green_Recreation",
+    "category_label": "Green & Recreation",
+    "london_total_pageviews": 218390.0,
+    "top5_boroughs": [
+      {
+        "borough": "Westminster",
+        "borough_code": "E09000033",
+        "value": 85554.0,
+        "rank": 1
+      },
+      {
+        "borough": "Kingston upon Thames",
+        "borough_code": "E09000021",
+        "value": 22495.0,
+        "rank": 2
+      },
+      {
+        "borough": "Lambeth",
+        "borough_code": "E09000022",
+        "value": 16661.0,
+        "rank": 3
+      },
+      {
+        "borough": "Richmond upon Thames",
+        "borough_code": "E09000027",
+        "value": 13285.0,
+        "rank": 4
+      },
+      {
+        "borough": "Camden",
+        "borough_code": "E09000007",
+        "value": 13029.0,
+        "rank": 5
+      }
+    ]
+  },
+  {
+    "month_index": 11,
+    "month_key": "202512",
+    "month_label": "Dec",
+    "category_key": "Commercial",
+    "category_label": "Commercial",
+    "london_total_pageviews": 122541.0,
+    "top5_boroughs": [
+      {
+        "borough": "Hillingdon",
+        "borough_code": "E09000017",
+        "value": 42478.0,
+        "rank": 1
+      },
+      {
+        "borough": "Westminster",
+        "borough_code": "E09000033",
+        "value": 20750.0,
+        "rank": 2
+      },
+      {
+        "borough": "City of London",
+        "borough_code": "E09000001",
+        "value": 7116.0,
+        "rank": 3
+      },
+      {
+        "borough": "Hammersmith and Fulham",
+        "borough_code": "E09000013",
+        "value": 7021.0,
+        "rank": 4
+      },
+      {
+        "borough": "Barnet",
+        "borough_code": "E09000003",
+        "value": 6893.0,
+        "rank": 5
+      }
+    ]
+  }
+]

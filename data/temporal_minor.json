@@ -1,0 +1,1082 @@
+[
+  {
+    "month_index": 0,
+    "month_key": "202501",
+    "month_label": "Jan",
+    "minor_category": "amusement_park",
+    "minor_label": "Amusement Park",
+    "major_category": "Green_Recreation",
+    "major_label": "Green & Recreation",
+    "value": 49588
+  },
+  {
+    "month_index": 1,
+    "month_key": "202502",
+    "month_label": "Feb",
+    "minor_category": "amusement_park",
+    "minor_label": "Amusement Park",
+    "major_category": "Green_Recreation",
+    "major_label": "Green & Recreation",
+    "value": 44299
+  },
+  {
+    "month_index": 2,
+    "month_key": "202503",
+    "month_label": "Mar",
+    "minor_category": "amusement_park",
+    "minor_label": "Amusement Park",
+    "major_category": "Green_Recreation",
+    "major_label": "Green & Recreation",
+    "value": 49271
+  },
+  {
+    "month_index": 3,
+    "month_key": "202504",
+    "month_label": "Apr",
+    "minor_category": "amusement_park",
+    "minor_label": "Amusement Park",
+    "major_category": "Green_Recreation",
+    "major_label": "Green & Recreation",
+    "value": 45733
+  },
+  {
+    "month_index": 4,
+    "month_key": "202505",
+    "month_label": "May",
+    "minor_category": "amusement_park",
+    "minor_label": "Amusement Park",
+    "major_category": "Green_Recreation",
+    "major_label": "Green & Recreation",
+    "value": 54332
+  },
+  {
+    "month_index": 5,
+    "month_key": "202506",
+    "month_label": "Jun",
+    "minor_category": "amusement_park",
+    "minor_label": "Amusement Park",
+    "major_category": "Green_Recreation",
+    "major_label": "Green & Recreation",
+    "value": 45830
+  },
+  {
+    "month_index": 6,
+    "month_key": "202507",
+    "month_label": "Jul",
+    "minor_category": "amusement_park",
+    "minor_label": "Amusement Park",
+    "major_category": "Green_Recreation",
+    "major_label": "Green & Recreation",
+    "value": 45963
+  },
+  {
+    "month_index": 7,
+    "month_key": "202508",
+    "month_label": "Aug",
+    "minor_category": "amusement_park",
+    "minor_label": "Amusement Park",
+    "major_category": "Green_Recreation",
+    "major_label": "Green & Recreation",
+    "value": 46855
+  },
+  {
+    "month_index": 8,
+    "month_key": "202509",
+    "month_label": "Sep",
+    "minor_category": "amusement_park",
+    "minor_label": "Amusement Park",
+    "major_category": "Green_Recreation",
+    "major_label": "Green & Recreation",
+    "value": 40296
+  },
+  {
+    "month_index": 9,
+    "month_key": "202510",
+    "month_label": "Oct",
+    "minor_category": "amusement_park",
+    "minor_label": "Amusement Park",
+    "major_category": "Green_Recreation",
+    "major_label": "Green & Recreation",
+    "value": 39917
+  },
+  {
+    "month_index": 10,
+    "month_key": "202511",
+    "month_label": "Nov",
+    "minor_category": "amusement_park",
+    "minor_label": "Amusement Park",
+    "major_category": "Green_Recreation",
+    "major_label": "Green & Recreation",
+    "value": 46925
+  },
+  {
+    "month_index": 11,
+    "month_key": "202512",
+    "month_label": "Dec",
+    "minor_category": "amusement_park",
+    "minor_label": "Amusement Park",
+    "major_category": "Green_Recreation",
+    "major_label": "Green & Recreation",
+    "value": 87565
+  },
+  {
+    "month_index": 0,
+    "month_key": "202501",
+    "month_label": "Jan",
+    "minor_category": "church",
+    "minor_label": "Church",
+    "major_category": "Cultural_Heritage",
+    "major_label": "Cultural & Heritage",
+    "value": 604490
+  },
+  {
+    "month_index": 1,
+    "month_key": "202502",
+    "month_label": "Feb",
+    "minor_category": "church",
+    "minor_label": "Church",
+    "major_category": "Cultural_Heritage",
+    "major_label": "Cultural & Heritage",
+    "value": 469138
+  },
+  {
+    "month_index": 2,
+    "month_key": "202503",
+    "month_label": "Mar",
+    "minor_category": "church",
+    "minor_label": "Church",
+    "major_category": "Cultural_Heritage",
+    "major_label": "Cultural & Heritage",
+    "value": 508869
+  },
+  {
+    "month_index": 3,
+    "month_key": "202504",
+    "month_label": "Apr",
+    "minor_category": "church",
+    "minor_label": "Church",
+    "major_category": "Cultural_Heritage",
+    "major_label": "Cultural & Heritage",
+    "value": 521412
+  },
+  {
+    "month_index": 4,
+    "month_key": "202505",
+    "month_label": "May",
+    "minor_category": "church",
+    "minor_label": "Church",
+    "major_category": "Cultural_Heritage",
+    "major_label": "Cultural & Heritage",
+    "value": 492536
+  },
+  {
+    "month_index": 5,
+    "month_key": "202506",
+    "month_label": "Jun",
+    "minor_category": "church",
+    "minor_label": "Church",
+    "major_category": "Cultural_Heritage",
+    "major_label": "Cultural & Heritage",
+    "value": 379260
+  },
+  {
+    "month_index": 6,
+    "month_key": "202507",
+    "month_label": "Jul",
+    "minor_category": "church",
+    "minor_label": "Church",
+    "major_category": "Cultural_Heritage",
+    "major_label": "Cultural & Heritage",
+    "value": 402557
+  },
+  {
+    "month_index": 7,
+    "month_key": "202508",
+    "month_label": "Aug",
+    "minor_category": "church",
+    "minor_label": "Church",
+    "major_category": "Cultural_Heritage",
+    "major_label": "Cultural & Heritage",
+    "value": 412767
+  },
+  {
+    "month_index": 8,
+    "month_key": "202509",
+    "month_label": "Sep",
+    "minor_category": "church",
+    "minor_label": "Church",
+    "major_category": "Cultural_Heritage",
+    "major_label": "Cultural & Heritage",
+    "value": 544782
+  },
+  {
+    "month_index": 9,
+    "month_key": "202510",
+    "month_label": "Oct",
+    "minor_category": "church",
+    "minor_label": "Church",
+    "major_category": "Cultural_Heritage",
+    "major_label": "Cultural & Heritage",
+    "value": 507779
+  },
+  {
+    "month_index": 10,
+    "month_key": "202511",
+    "month_label": "Nov",
+    "minor_category": "church",
+    "minor_label": "Church",
+    "major_category": "Cultural_Heritage",
+    "major_label": "Cultural & Heritage",
+    "value": 423611
+  },
+  {
+    "month_index": 11,
+    "month_key": "202512",
+    "month_label": "Dec",
+    "minor_category": "church",
+    "minor_label": "Church",
+    "major_category": "Cultural_Heritage",
+    "major_label": "Cultural & Heritage",
+    "value": 474781
+  },
+  {
+    "month_index": 0,
+    "month_key": "202501",
+    "month_label": "Jan",
+    "minor_category": "library",
+    "minor_label": "Library",
+    "major_category": "Cultural_Heritage",
+    "major_label": "Cultural & Heritage",
+    "value": 31555
+  },
+  {
+    "month_index": 1,
+    "month_key": "202502",
+    "month_label": "Feb",
+    "minor_category": "library",
+    "minor_label": "Library",
+    "major_category": "Cultural_Heritage",
+    "major_label": "Cultural & Heritage",
+    "value": 24024
+  },
+  {
+    "month_index": 2,
+    "month_key": "202503",
+    "month_label": "Mar",
+    "minor_category": "library",
+    "minor_label": "Library",
+    "major_category": "Cultural_Heritage",
+    "major_label": "Cultural & Heritage",
+    "value": 23020
+  },
+  {
+    "month_index": 3,
+    "month_key": "202504",
+    "month_label": "Apr",
+    "minor_category": "library",
+    "minor_label": "Library",
+    "major_category": "Cultural_Heritage",
+    "major_label": "Cultural & Heritage",
+    "value": 21130
+  },
+  {
+    "month_index": 4,
+    "month_key": "202505",
+    "month_label": "May",
+    "minor_category": "library",
+    "minor_label": "Library",
+    "major_category": "Cultural_Heritage",
+    "major_label": "Cultural & Heritage",
+    "value": 21604
+  },
+  {
+    "month_index": 5,
+    "month_key": "202506",
+    "month_label": "Jun",
+    "minor_category": "library",
+    "minor_label": "Library",
+    "major_category": "Cultural_Heritage",
+    "major_label": "Cultural & Heritage",
+    "value": 19407
+  },
+  {
+    "month_index": 6,
+    "month_key": "202507",
+    "month_label": "Jul",
+    "minor_category": "library",
+    "minor_label": "Library",
+    "major_category": "Cultural_Heritage",
+    "major_label": "Cultural & Heritage",
+    "value": 19740
+  },
+  {
+    "month_index": 7,
+    "month_key": "202508",
+    "month_label": "Aug",
+    "minor_category": "library",
+    "minor_label": "Library",
+    "major_category": "Cultural_Heritage",
+    "major_label": "Cultural & Heritage",
+    "value": 21798
+  },
+  {
+    "month_index": 8,
+    "month_key": "202509",
+    "month_label": "Sep",
+    "minor_category": "library",
+    "minor_label": "Library",
+    "major_category": "Cultural_Heritage",
+    "major_label": "Cultural & Heritage",
+    "value": 21909
+  },
+  {
+    "month_index": 9,
+    "month_key": "202510",
+    "month_label": "Oct",
+    "minor_category": "library",
+    "minor_label": "Library",
+    "major_category": "Cultural_Heritage",
+    "major_label": "Cultural & Heritage",
+    "value": 23224
+  },
+  {
+    "month_index": 10,
+    "month_key": "202511",
+    "month_label": "Nov",
+    "minor_category": "library",
+    "minor_label": "Library",
+    "major_category": "Cultural_Heritage",
+    "major_label": "Cultural & Heritage",
+    "value": 22917
+  },
+  {
+    "month_index": 11,
+    "month_key": "202512",
+    "month_label": "Dec",
+    "minor_category": "library",
+    "minor_label": "Library",
+    "major_category": "Cultural_Heritage",
+    "major_label": "Cultural & Heritage",
+    "value": 22162
+  },
+  {
+    "month_index": 0,
+    "month_key": "202501",
+    "month_label": "Jan",
+    "minor_category": "museum",
+    "minor_label": "Museum",
+    "major_category": "Cultural_Heritage",
+    "major_label": "Cultural & Heritage",
+    "value": 344801
+  },
+  {
+    "month_index": 1,
+    "month_key": "202502",
+    "month_label": "Feb",
+    "minor_category": "museum",
+    "minor_label": "Museum",
+    "major_category": "Cultural_Heritage",
+    "major_label": "Cultural & Heritage",
+    "value": 310712
+  },
+  {
+    "month_index": 2,
+    "month_key": "202503",
+    "month_label": "Mar",
+    "minor_category": "museum",
+    "minor_label": "Museum",
+    "major_category": "Cultural_Heritage",
+    "major_label": "Cultural & Heritage",
+    "value": 349625
+  },
+  {
+    "month_index": 3,
+    "month_key": "202504",
+    "month_label": "Apr",
+    "minor_category": "museum",
+    "minor_label": "Museum",
+    "major_category": "Cultural_Heritage",
+    "major_label": "Cultural & Heritage",
+    "value": 328611
+  },
+  {
+    "month_index": 4,
+    "month_key": "202505",
+    "month_label": "May",
+    "minor_category": "museum",
+    "minor_label": "Museum",
+    "major_category": "Cultural_Heritage",
+    "major_label": "Cultural & Heritage",
+    "value": 314236
+  },
+  {
+    "month_index": 5,
+    "month_key": "202506",
+    "month_label": "Jun",
+    "minor_category": "museum",
+    "minor_label": "Museum",
+    "major_category": "Cultural_Heritage",
+    "major_label": "Cultural & Heritage",
+    "value": 290239
+  },
+  {
+    "month_index": 6,
+    "month_key": "202507",
+    "month_label": "Jul",
+    "minor_category": "museum",
+    "minor_label": "Museum",
+    "major_category": "Cultural_Heritage",
+    "major_label": "Cultural & Heritage",
+    "value": 311602
+  },
+  {
+    "month_index": 7,
+    "month_key": "202508",
+    "month_label": "Aug",
+    "minor_category": "museum",
+    "minor_label": "Museum",
+    "major_category": "Cultural_Heritage",
+    "major_label": "Cultural & Heritage",
+    "value": 326382
+  },
+  {
+    "month_index": 8,
+    "month_key": "202509",
+    "month_label": "Sep",
+    "minor_category": "museum",
+    "minor_label": "Museum",
+    "major_category": "Cultural_Heritage",
+    "major_label": "Cultural & Heritage",
+    "value": 298840
+  },
+  {
+    "month_index": 9,
+    "month_key": "202510",
+    "month_label": "Oct",
+    "minor_category": "museum",
+    "minor_label": "Museum",
+    "major_category": "Cultural_Heritage",
+    "major_label": "Cultural & Heritage",
+    "value": 325104
+  },
+  {
+    "month_index": 10,
+    "month_key": "202511",
+    "month_label": "Nov",
+    "minor_category": "museum",
+    "minor_label": "Museum",
+    "major_category": "Cultural_Heritage",
+    "major_label": "Cultural & Heritage",
+    "value": 308359
+  },
+  {
+    "month_index": 11,
+    "month_key": "202512",
+    "month_label": "Dec",
+    "minor_category": "museum",
+    "minor_label": "Museum",
+    "major_category": "Cultural_Heritage",
+    "major_label": "Cultural & Heritage",
+    "value": 295233
+  },
+  {
+    "month_index": 0,
+    "month_key": "202501",
+    "month_label": "Jan",
+    "minor_category": "nature_reserve",
+    "minor_label": "Nature Reserve",
+    "major_category": "Green_Recreation",
+    "major_label": "Green & Recreation",
+    "value": 760
+  },
+  {
+    "month_index": 1,
+    "month_key": "202502",
+    "month_label": "Feb",
+    "minor_category": "nature_reserve",
+    "minor_label": "Nature Reserve",
+    "major_category": "Green_Recreation",
+    "major_label": "Green & Recreation",
+    "value": 734
+  },
+  {
+    "month_index": 2,
+    "month_key": "202503",
+    "month_label": "Mar",
+    "minor_category": "nature_reserve",
+    "minor_label": "Nature Reserve",
+    "major_category": "Green_Recreation",
+    "major_label": "Green & Recreation",
+    "value": 913
+  },
+  {
+    "month_index": 3,
+    "month_key": "202504",
+    "month_label": "Apr",
+    "minor_category": "nature_reserve",
+    "minor_label": "Nature Reserve",
+    "major_category": "Green_Recreation",
+    "major_label": "Green & Recreation",
+    "value": 898
+  },
+  {
+    "month_index": 4,
+    "month_key": "202505",
+    "month_label": "May",
+    "minor_category": "nature_reserve",
+    "minor_label": "Nature Reserve",
+    "major_category": "Green_Recreation",
+    "major_label": "Green & Recreation",
+    "value": 939
+  },
+  {
+    "month_index": 5,
+    "month_key": "202506",
+    "month_label": "Jun",
+    "minor_category": "nature_reserve",
+    "minor_label": "Nature Reserve",
+    "major_category": "Green_Recreation",
+    "major_label": "Green & Recreation",
+    "value": 742
+  },
+  {
+    "month_index": 6,
+    "month_key": "202507",
+    "month_label": "Jul",
+    "minor_category": "nature_reserve",
+    "minor_label": "Nature Reserve",
+    "major_category": "Green_Recreation",
+    "major_label": "Green & Recreation",
+    "value": 776
+  },
+  {
+    "month_index": 7,
+    "month_key": "202508",
+    "month_label": "Aug",
+    "minor_category": "nature_reserve",
+    "minor_label": "Nature Reserve",
+    "major_category": "Green_Recreation",
+    "major_label": "Green & Recreation",
+    "value": 886
+  },
+  {
+    "month_index": 8,
+    "month_key": "202509",
+    "month_label": "Sep",
+    "minor_category": "nature_reserve",
+    "minor_label": "Nature Reserve",
+    "major_category": "Green_Recreation",
+    "major_label": "Green & Recreation",
+    "value": 704
+  },
+  {
+    "month_index": 9,
+    "month_key": "202510",
+    "month_label": "Oct",
+    "minor_category": "nature_reserve",
+    "minor_label": "Nature Reserve",
+    "major_category": "Green_Recreation",
+    "major_label": "Green & Recreation",
+    "value": 721
+  },
+  {
+    "month_index": 10,
+    "month_key": "202511",
+    "month_label": "Nov",
+    "minor_category": "nature_reserve",
+    "minor_label": "Nature Reserve",
+    "major_category": "Green_Recreation",
+    "major_label": "Green & Recreation",
+    "value": 787
+  },
+  {
+    "month_index": 11,
+    "month_key": "202512",
+    "month_label": "Dec",
+    "minor_category": "nature_reserve",
+    "minor_label": "Nature Reserve",
+    "major_category": "Green_Recreation",
+    "major_label": "Green & Recreation",
+    "value": 796
+  },
+  {
+    "month_index": 0,
+    "month_key": "202501",
+    "month_label": "Jan",
+    "minor_category": "park",
+    "minor_label": "Park",
+    "major_category": "Green_Recreation",
+    "major_label": "Green & Recreation",
+    "value": 119251
+  },
+  {
+    "month_index": 1,
+    "month_key": "202502",
+    "month_label": "Feb",
+    "minor_category": "park",
+    "minor_label": "Park",
+    "major_category": "Green_Recreation",
+    "major_label": "Green & Recreation",
+    "value": 152069
+  },
+  {
+    "month_index": 2,
+    "month_key": "202503",
+    "month_label": "Mar",
+    "minor_category": "park",
+    "minor_label": "Park",
+    "major_category": "Green_Recreation",
+    "major_label": "Green & Recreation",
+    "value": 121125
+  },
+  {
+    "month_index": 3,
+    "month_key": "202504",
+    "month_label": "Apr",
+    "minor_category": "park",
+    "minor_label": "Park",
+    "major_category": "Green_Recreation",
+    "major_label": "Green & Recreation",
+    "value": 117197
+  },
+  {
+    "month_index": 4,
+    "month_key": "202505",
+    "month_label": "May",
+    "minor_category": "park",
+    "minor_label": "Park",
+    "major_category": "Green_Recreation",
+    "major_label": "Green & Recreation",
+    "value": 110903
+  },
+  {
+    "month_index": 5,
+    "month_key": "202506",
+    "month_label": "Jun",
+    "minor_category": "park",
+    "minor_label": "Park",
+    "major_category": "Green_Recreation",
+    "major_label": "Green & Recreation",
+    "value": 100659
+  },
+  {
+    "month_index": 6,
+    "month_key": "202507",
+    "month_label": "Jul",
+    "minor_category": "park",
+    "minor_label": "Park",
+    "major_category": "Green_Recreation",
+    "major_label": "Green & Recreation",
+    "value": 114362
+  },
+  {
+    "month_index": 7,
+    "month_key": "202508",
+    "month_label": "Aug",
+    "minor_category": "park",
+    "minor_label": "Park",
+    "major_category": "Green_Recreation",
+    "major_label": "Green & Recreation",
+    "value": 135847
+  },
+  {
+    "month_index": 8,
+    "month_key": "202509",
+    "month_label": "Sep",
+    "minor_category": "park",
+    "minor_label": "Park",
+    "major_category": "Green_Recreation",
+    "major_label": "Green & Recreation",
+    "value": 107446
+  },
+  {
+    "month_index": 9,
+    "month_key": "202510",
+    "month_label": "Oct",
+    "minor_category": "park",
+    "minor_label": "Park",
+    "major_category": "Green_Recreation",
+    "major_label": "Green & Recreation",
+    "value": 170106
+  },
+  {
+    "month_index": 10,
+    "month_key": "202511",
+    "month_label": "Nov",
+    "minor_category": "park",
+    "minor_label": "Park",
+    "major_category": "Green_Recreation",
+    "major_label": "Green & Recreation",
+    "value": 114141
+  },
+  {
+    "month_index": 11,
+    "month_key": "202512",
+    "month_label": "Dec",
+    "minor_category": "park",
+    "minor_label": "Park",
+    "major_category": "Green_Recreation",
+    "major_label": "Green & Recreation",
+    "value": 99377
+  },
+  {
+    "month_index": 0,
+    "month_key": "202501",
+    "month_label": "Jan",
+    "minor_category": "shopping_center",
+    "minor_label": "Shopping Center",
+    "major_category": "Commercial",
+    "major_label": "Commercial",
+    "value": 141979
+  },
+  {
+    "month_index": 1,
+    "month_key": "202502",
+    "month_label": "Feb",
+    "minor_category": "shopping_center",
+    "minor_label": "Shopping Center",
+    "major_category": "Commercial",
+    "major_label": "Commercial",
+    "value": 119262
+  },
+  {
+    "month_index": 2,
+    "month_key": "202503",
+    "month_label": "Mar",
+    "minor_category": "shopping_center",
+    "minor_label": "Shopping Center",
+    "major_category": "Commercial",
+    "major_label": "Commercial",
+    "value": 134600
+  },
+  {
+    "month_index": 3,
+    "month_key": "202504",
+    "month_label": "Apr",
+    "minor_category": "shopping_center",
+    "minor_label": "Shopping Center",
+    "major_category": "Commercial",
+    "major_label": "Commercial",
+    "value": 109028
+  },
+  {
+    "month_index": 4,
+    "month_key": "202505",
+    "month_label": "May",
+    "minor_category": "shopping_center",
+    "minor_label": "Shopping Center",
+    "major_category": "Commercial",
+    "major_label": "Commercial",
+    "value": 107567
+  },
+  {
+    "month_index": 5,
+    "month_key": "202506",
+    "month_label": "Jun",
+    "minor_category": "shopping_center",
+    "minor_label": "Shopping Center",
+    "major_category": "Commercial",
+    "major_label": "Commercial",
+    "value": 100400
+  },
+  {
+    "month_index": 6,
+    "month_key": "202507",
+    "month_label": "Jul",
+    "minor_category": "shopping_center",
+    "minor_label": "Shopping Center",
+    "major_category": "Commercial",
+    "major_label": "Commercial",
+    "value": 109349
+  },
+  {
+    "month_index": 7,
+    "month_key": "202508",
+    "month_label": "Aug",
+    "minor_category": "shopping_center",
+    "minor_label": "Shopping Center",
+    "major_category": "Commercial",
+    "major_label": "Commercial",
+    "value": 118813
+  },
+  {
+    "month_index": 8,
+    "month_key": "202509",
+    "month_label": "Sep",
+    "minor_category": "shopping_center",
+    "minor_label": "Shopping Center",
+    "major_category": "Commercial",
+    "major_label": "Commercial",
+    "value": 107977
+  },
+  {
+    "month_index": 9,
+    "month_key": "202510",
+    "month_label": "Oct",
+    "minor_category": "shopping_center",
+    "minor_label": "Shopping Center",
+    "major_category": "Commercial",
+    "major_label": "Commercial",
+    "value": 109460
+  },
+  {
+    "month_index": 10,
+    "month_key": "202511",
+    "month_label": "Nov",
+    "minor_category": "shopping_center",
+    "minor_label": "Shopping Center",
+    "major_category": "Commercial",
+    "major_label": "Commercial",
+    "value": 117233
+  },
+  {
+    "month_index": 11,
+    "month_key": "202512",
+    "month_label": "Dec",
+    "minor_category": "shopping_center",
+    "minor_label": "Shopping Center",
+    "major_category": "Commercial",
+    "major_label": "Commercial",
+    "value": 122541
+  },
+  {
+    "month_index": 0,
+    "month_key": "202501",
+    "month_label": "Jan",
+    "minor_category": "theatre",
+    "minor_label": "Theatre",
+    "major_category": "Cultural_Heritage",
+    "major_label": "Cultural & Heritage",
+    "value": 576071
+  },
+  {
+    "month_index": 1,
+    "month_key": "202502",
+    "month_label": "Feb",
+    "minor_category": "theatre",
+    "minor_label": "Theatre",
+    "major_category": "Cultural_Heritage",
+    "major_label": "Cultural & Heritage",
+    "value": 443020
+  },
+  {
+    "month_index": 2,
+    "month_key": "202503",
+    "month_label": "Mar",
+    "minor_category": "theatre",
+    "minor_label": "Theatre",
+    "major_category": "Cultural_Heritage",
+    "major_label": "Cultural & Heritage",
+    "value": 500125
+  },
+  {
+    "month_index": 3,
+    "month_key": "202504",
+    "month_label": "Apr",
+    "minor_category": "theatre",
+    "minor_label": "Theatre",
+    "major_category": "Cultural_Heritage",
+    "major_label": "Cultural & Heritage",
+    "value": 444212
+  },
+  {
+    "month_index": 4,
+    "month_key": "202505",
+    "month_label": "May",
+    "minor_category": "theatre",
+    "minor_label": "Theatre",
+    "major_category": "Cultural_Heritage",
+    "major_label": "Cultural & Heritage",
+    "value": 464316
+  },
+  {
+    "month_index": 5,
+    "month_key": "202506",
+    "month_label": "Jun",
+    "minor_category": "theatre",
+    "minor_label": "Theatre",
+    "major_category": "Cultural_Heritage",
+    "major_label": "Cultural & Heritage",
+    "value": 447222
+  },
+  {
+    "month_index": 6,
+    "month_key": "202507",
+    "month_label": "Jul",
+    "minor_category": "theatre",
+    "minor_label": "Theatre",
+    "major_category": "Cultural_Heritage",
+    "major_label": "Cultural & Heritage",
+    "value": 453782
+  },
+  {
+    "month_index": 7,
+    "month_key": "202508",
+    "month_label": "Aug",
+    "minor_category": "theatre",
+    "minor_label": "Theatre",
+    "major_category": "Cultural_Heritage",
+    "major_label": "Cultural & Heritage",
+    "value": 496228
+  },
+  {
+    "month_index": 8,
+    "month_key": "202509",
+    "month_label": "Sep",
+    "minor_category": "theatre",
+    "minor_label": "Theatre",
+    "major_category": "Cultural_Heritage",
+    "major_label": "Cultural & Heritage",
+    "value": 648388
+  },
+  {
+    "month_index": 9,
+    "month_key": "202510",
+    "month_label": "Oct",
+    "minor_category": "theatre",
+    "minor_label": "Theatre",
+    "major_category": "Cultural_Heritage",
+    "major_label": "Cultural & Heritage",
+    "value": 567199
+  },
+  {
+    "month_index": 10,
+    "month_key": "202511",
+    "month_label": "Nov",
+    "minor_category": "theatre",
+    "minor_label": "Theatre",
+    "major_category": "Cultural_Heritage",
+    "major_label": "Cultural & Heritage",
+    "value": 762853
+  },
+  {
+    "month_index": 11,
+    "month_key": "202512",
+    "month_label": "Dec",
+    "minor_category": "theatre",
+    "minor_label": "Theatre",
+    "major_category": "Cultural_Heritage",
+    "major_label": "Cultural & Heritage",
+    "value": 909252
+  },
+  {
+    "month_index": 0,
+    "month_key": "202501",
+    "month_label": "Jan",
+    "minor_category": "zoo",
+    "minor_label": "Zoo",
+    "major_category": "Green_Recreation",
+    "major_label": "Green & Recreation",
+    "value": 31530
+  },
+  {
+    "month_index": 1,
+    "month_key": "202502",
+    "month_label": "Feb",
+    "minor_category": "zoo",
+    "minor_label": "Zoo",
+    "major_category": "Green_Recreation",
+    "major_label": "Green & Recreation",
+    "value": 28457
+  },
+  {
+    "month_index": 2,
+    "month_key": "202503",
+    "month_label": "Mar",
+    "minor_category": "zoo",
+    "minor_label": "Zoo",
+    "major_category": "Green_Recreation",
+    "major_label": "Green & Recreation",
+    "value": 32960
+  },
+  {
+    "month_index": 3,
+    "month_key": "202504",
+    "month_label": "Apr",
+    "minor_category": "zoo",
+    "minor_label": "Zoo",
+    "major_category": "Green_Recreation",
+    "major_label": "Green & Recreation",
+    "value": 27690
+  },
+  {
+    "month_index": 4,
+    "month_key": "202505",
+    "month_label": "May",
+    "minor_category": "zoo",
+    "minor_label": "Zoo",
+    "major_category": "Green_Recreation",
+    "major_label": "Green & Recreation",
+    "value": 29532
+  },
+  {
+    "month_index": 5,
+    "month_key": "202506",
+    "month_label": "Jun",
+    "minor_category": "zoo",
+    "minor_label": "Zoo",
+    "major_category": "Green_Recreation",
+    "major_label": "Green & Recreation",
+    "value": 24060
+  },
+  {
+    "month_index": 6,
+    "month_key": "202507",
+    "month_label": "Jul",
+    "minor_category": "zoo",
+    "minor_label": "Zoo",
+    "major_category": "Green_Recreation",
+    "major_label": "Green & Recreation",
+    "value": 28204
+  },
+  {
+    "month_index": 7,
+    "month_key": "202508",
+    "month_label": "Aug",
+    "minor_category": "zoo",
+    "minor_label": "Zoo",
+    "major_category": "Green_Recreation",
+    "major_label": "Green & Recreation",
+    "value": 26788
+  },
+  {
+    "month_index": 8,
+    "month_key": "202509",
+    "month_label": "Sep",
+    "minor_category": "zoo",
+    "minor_label": "Zoo",
+    "major_category": "Green_Recreation",
+    "major_label": "Green & Recreation",
+    "value": 23894
+  },
+  {
+    "month_index": 9,
+    "month_key": "202510",
+    "month_label": "Oct",
+    "minor_category": "zoo",
+    "minor_label": "Zoo",
+    "major_category": "Green_Recreation",
+    "major_label": "Green & Recreation",
+    "value": 25746
+  },
+  {
+    "month_index": 10,
+    "month_key": "202511",
+    "month_label": "Nov",
+    "minor_category": "zoo",
+    "minor_label": "Zoo",
+    "major_category": "Green_Recreation",
+    "major_label": "Green & Recreation",
+    "value": 30317
+  },
+  {
+    "month_index": 11,
+    "month_key": "202512",
+    "month_label": "Dec",
+    "minor_category": "zoo",
+    "minor_label": "Zoo",
+    "major_category": "Green_Recreation",
+    "major_label": "Green & Recreation",
+    "value": 30652
+  }
+]

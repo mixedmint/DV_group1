@@ -1,0 +1,74 @@
+[
+  {
+    "month_index": 0,
+    "month_key": "202501",
+    "month_label": "Jan",
+    "value": 1900025
+  },
+  {
+    "month_index": 1,
+    "month_key": "202502",
+    "month_label": "Feb",
+    "value": 1591715
+  },
+  {
+    "month_index": 2,
+    "month_key": "202503",
+    "month_label": "Mar",
+    "value": 1720508
+  },
+  {
+    "month_index": 3,
+    "month_key": "202504",
+    "month_label": "Apr",
+    "value": 1615911
+  },
+  {
+    "month_index": 4,
+    "month_key": "202505",
+    "month_label": "May",
+    "value": 1595965
+  },
+  {
+    "month_index": 5,
+    "month_key": "202506",
+    "month_label": "Jun",
+    "value": 1407819
+  },
+  {
+    "month_index": 6,
+    "month_key": "202507",
+    "month_label": "Jul",
+    "value": 1486335
+  },
+  {
+    "month_index": 7,
+    "month_key": "202508",
+    "month_label": "Aug",
+    "value": 1586364
+  },
+  {
+    "month_index": 8,
+    "month_key": "202509",
+    "month_label": "Sep",
+    "value": 1794236
+  },
+  {
+    "month_index": 9,
+    "month_key": "202510",
+    "month_label": "Oct",
+    "value": 1769256
+  },
+  {
+    "month_index": 10,
+    "month_key": "202511",
+    "month_label": "Nov",
+    "value": 1827143
+  },
+  {
+    "month_index": 11,
+    "month_key": "202512",
+    "month_label": "Dec",
+    "value": 2042359
+  }
+]

@@ -1,0 +1,290 @@
+[
+  {
+    "month_index": 0,
+    "month_key": "202501",
+    "month_label": "Jan",
+    "major_category": "Commercial",
+    "major_label": "Commercial",
+    "value": 141979
+  },
+  {
+    "month_index": 1,
+    "month_key": "202502",
+    "month_label": "Feb",
+    "major_category": "Commercial",
+    "major_label": "Commercial",
+    "value": 119262
+  },
+  {
+    "month_index": 2,
+    "month_key": "202503",
+    "month_label": "Mar",
+    "major_category": "Commercial",
+    "major_label": "Commercial",
+    "value": 134600
+  },
+  {
+    "month_index": 3,
+    "month_key": "202504",
+    "month_label": "Apr",
+    "major_category": "Commercial",
+    "major_label": "Commercial",
+    "value": 109028
+  },
+  {
+    "month_index": 4,
+    "month_key": "202505",
+    "month_label": "May",
+    "major_category": "Commercial",
+    "major_label": "Commercial",
+    "value": 107567
+  },
+  {
+    "month_index": 5,
+    "month_key": "202506",
+    "month_label": "Jun",
+    "major_category": "Commercial",
+    "major_label": "Commercial",
+    "value": 100400
+  },
+  {
+    "month_index": 6,
+    "month_key": "202507",
+    "month_label": "Jul",
+    "major_category": "Commercial",
+    "major_label": "Commercial",
+    "value": 109349
+  },
+  {
+    "month_index": 7,
+    "month_key": "202508",
+    "month_label": "Aug",
+    "major_category": "Commercial",
+    "major_label": "Commercial",
+    "value": 118813
+  },
+  {
+    "month_index": 8,
+    "month_key": "202509",
+    "month_label": "Sep",
+    "major_category": "Commercial",
+    "major_label": "Commercial",
+    "value": 107977
+  },
+  {
+    "month_index": 9,
+    "month_key": "202510",
+    "month_label": "Oct",
+    "major_category": "Commercial",
+    "major_label": "Commercial",
+    "value": 109460
+  },
+  {
+    "month_index": 10,
+    "month_key": "202511",
+    "month_label": "Nov",
+    "major_category": "Commercial",
+    "major_label": "Commercial",
+    "value": 117233
+  },
+  {
+    "month_index": 11,
+    "month_key": "202512",
+    "month_label": "Dec",
+    "major_category": "Commercial",
+    "major_label": "Commercial",
+    "value": 122541
+  },
+  {
+    "month_index": 0,
+    "month_key": "202501",
+    "month_label": "Jan",
+    "major_category": "Cultural_Heritage",
+    "major_label": "Cultural & Heritage",
+    "value": 1556917
+  },
+  {
+    "month_index": 1,
+    "month_key": "202502",
+    "month_label": "Feb",
+    "major_category": "Cultural_Heritage",
+    "major_label": "Cultural & Heritage",
+    "value": 1246894
+  },
+  {
+    "month_index": 2,
+    "month_key": "202503",
+    "month_label": "Mar",
+    "major_category": "Cultural_Heritage",
+    "major_label": "Cultural & Heritage",
+    "value": 1381639
+  },
+  {
+    "month_index": 3,
+    "month_key": "202504",
+    "month_label": "Apr",
+    "major_category": "Cultural_Heritage",
+    "major_label": "Cultural & Heritage",
+    "value": 1315365
+  },
+  {
+    "month_index": 4,
+    "month_key": "202505",
+    "month_label": "May",
+    "major_category": "Cultural_Heritage",
+    "major_label": "Cultural & Heritage",
+    "value": 1292692
+  },
+  {
+    "month_index": 5,
+    "month_key": "202506",
+    "month_label": "Jun",
+    "major_category": "Cultural_Heritage",
+    "major_label": "Cultural & Heritage",
+    "value": 1136128
+  },
+  {
+    "month_index": 6,
+    "month_key": "202507",
+    "month_label": "Jul",
+    "major_category": "Cultural_Heritage",
+    "major_label": "Cultural & Heritage",
+    "value": 1187681
+  },
+  {
+    "month_index": 7,
+    "month_key": "202508",
+    "month_label": "Aug",
+    "major_category": "Cultural_Heritage",
+    "major_label": "Cultural & Heritage",
+    "value": 1257175
+  },
+  {
+    "month_index": 8,
+    "month_key": "202509",
+    "month_label": "Sep",
+    "major_category": "Cultural_Heritage",
+    "major_label": "Cultural & Heritage",
+    "value": 1513919
+  },
+  {
+    "month_index": 9,
+    "month_key": "202510",
+    "month_label": "Oct",
+    "major_category": "Cultural_Heritage",
+    "major_label": "Cultural & Heritage",
+    "value": 1423306
+  },
+  {
+    "month_index": 10,
+    "month_key": "202511",
+    "month_label": "Nov",
+    "major_category": "Cultural_Heritage",
+    "major_label": "Cultural & Heritage",
+    "value": 1517740
+  },
+  {
+    "month_index": 11,
+    "month_key": "202512",
+    "month_label": "Dec",
+    "major_category": "Cultural_Heritage",
+    "major_label": "Cultural & Heritage",
+    "value": 1701428
+  },
+  {
+    "month_index": 0,
+    "month_key": "202501",
+    "month_label": "Jan",
+    "major_category": "Green_Recreation",
+    "major_label": "Green & Recreation",
+    "value": 201129
+  },
+  {
+    "month_index": 1,
+    "month_key": "202502",
+    "month_label": "Feb",
+    "major_category": "Green_Recreation",
+    "major_label": "Green & Recreation",
+    "value": 225559
+  },
+  {
+    "month_index": 2,
+    "month_key": "202503",
+    "month_label": "Mar",
+    "major_category": "Green_Recreation",
+    "major_label": "Green & Recreation",
+    "value": 204269
+  },
+  {
+    "month_index": 3,
+    "month_key": "202504",
+    "month_label": "Apr",
+    "major_category": "Green_Recreation",
+    "major_label": "Green & Recreation",
+    "value": 191518
+  },
+  {
+    "month_index": 4,
+    "month_key": "202505",
+    "month_label": "May",
+    "major_category": "Green_Recreation",
+    "major_label": "Green & Recreation",
+    "value": 195706
+  },
+  {
+    "month_index": 5,
+    "month_key": "202506",
+    "month_label": "Jun",
+    "major_category": "Green_Recreation",
+    "major_label": "Green & Recreation",
+    "value": 171291
+  },
+  {
+    "month_index": 6,
+    "month_key": "202507",
+    "month_label": "Jul",
+    "major_category": "Green_Recreation",
+    "major_label": "Green & Recreation",
+    "value": 189305
+  },
+  {
+    "month_index": 7,
+    "month_key": "202508",
+    "month_label": "Aug",
+    "major_category": "Green_Recreation",
+    "major_label": "Green & Recreation",
+    "value": 210376
+  },
+  {
+    "month_index": 8,
+    "month_key": "202509",
+    "month_label": "Sep",
+    "major_category": "Green_Recreation",
+    "major_label": "Green & Recreation",
+    "value": 172340
+  },
+  {
+    "month_index": 9,
+    "month_key": "202510",
+    "month_label": "Oct",
+    "major_category": "Green_Recreation",
+    "major_label": "Green & Recreation",
+    "value": 236490
+  },
+  {
+    "month_index": 10,
+    "month_key": "202511",
+    "month_label": "Nov",
+    "major_category": "Green_Recreation",
+    "major_label": "Green & Recreation",
+    "value": 192170
+  },
+  {
+    "month_index": 11,
+    "month_key": "202512",
+    "month_label": "Dec",
+    "major_category": "Green_Recreation",
+    "major_label": "Green & Recreation",
+    "value": 218390
+  }
+]
