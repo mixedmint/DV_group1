@@ -16,6 +16,9 @@
   <!-- Chart.js -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
+  <!-- D3.js -->
+  <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+
   <link rel="stylesheet" href="style.css"/>
 </head>
 
@@ -29,8 +32,8 @@
       <li><a href="#intro">Introduction</a></li>
       <li><a href="#map1">POI Map</a></li>
       <li><a href="#map2">Heatmap</a></li>
-      <li><a href="#map3">Map 3</a></li>
-      <li><a href="#map4">Map 4</a></li>
+      <li><a href="#map3">Temporal Dynamics</a></li>
+      <li><a href="#map4">Borough Ranking</a></li>
       <li><a href="#conclusion">Conclusion</a></li>
       <li><a href="#team">Team</a></li>
     </ul>
@@ -270,31 +273,157 @@
 
   <hr class="divider"/>
 
-  <!-- SECTION 4 · Map 3 -->
-  <section id="map3" class="bg-white">
-    <div class="section-inner">
-      <p class="section-label">04 · Visualisation 3</p>
-      <h2 class="section-title">Map Title Here</h2>
-      <hr class="rule"/>
-      <p class="section-subtitle">Describe this third visualisation. Copy any section block to add more maps.</p>
-      <div class="map-wrap">
-        <div id="mapbox-3">
-          <div class="map-placeholder">
-            <svg width="44" height="44" fill="none" stroke="#56C9D6" stroke-width="1.5" viewBox="0 0 24 24"><path d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 13l4.553 2.276A1 1 0 0021 21.382V10.618a1 1 0 00-.553-.894L15 7m0 13V7m0 0L9 4"/></svg>
-            Mapbox Map 3 — add your token in the script below
-          </div>
+  <!-- SECTION 4 · Map 3 · Temporal Dynamics of Digital Attention -->
+<section id="map3" class="bg-white">
+  <!-- Section header (constrained width) -->
+  <div class="section-inner temporal-header">
+    <p class="section-label">04 · Visualisation 3</p>
+    <h2 class="section-title">Temporal Dynamics of Digital Attention</h2>
+    <hr class="rule"/>
+    <p class="section-subtitle">
+      Explore monthly changes in Wikipedia pageviews across London POIs.
+      The map updates by month, while the charts reveal overall and category-specific temporal rhythms.
+    </p>
+  </div>
+
+  <!-- Layout -->
+  <div class="temporal-layout">
+    <!-- Control Panel -->
+    <aside class="temporal-sidebar">
+      <div class="temporal-panel-block temporal-month-block">
+        <div id="temporal-current-month" class="temporal-current-month">Jan</div>
+        <div class="temporal-slider-row">
+          <span class="temporal-slider-label">Jan</span>
+          <input type="range" id="temporal-slider" min="0" max="11" step="1" value="0" />
+          <span class="temporal-slider-label">Dec</span>
         </div>
       </div>
-      <p class="map-source">Data source: [Dataset name] · <a href="#">Link to data</a></p>
+
+      <!-- Overall Trend -->
+      <div class="temporal-panel-block temporal-chart-block">
+        <div class="temporal-panel-label">2025 Digital Attention Trend</div>
+        <div class="temporal-chart-wrap">
+          <canvas id="temporal-overall-chart"></canvas>
+        </div>
+      </div>
+
+      <!-- Categories Trend -->
+      <div class="temporal-panel-block">
+        <div class="temporal-panel-label">Select Category</div>
+        <div class="temporal-mode-group">
+          <button class="temporal-mode-btn active" data-mode="major">Major Categories</button>
+          <button class="temporal-mode-btn" data-mode="minor">Minor Categories</button>
+        </div>
+      </div>
+
+      <div class="temporal-panel-block" id="temporal-minor-wrap" style="display:none;">
+        <div class="temporal-panel-label">Minor Category</div>
+        <select id="temporal-minor-select" class="temporal-select"></select>
+      </div>
+
+      <div class="temporal-panel-block temporal-chart-block">
+        <div class="temporal-panel-label" id="temporal-detail-title">Category Trends</div>
+        <div class="temporal-chart-wrap">
+          <canvas id="temporal-detail-chart"></canvas>
+        </div>
+      </div>
+      
+      <!-- Legend -->
+      <div class="temporal-panel-block">
+        <div class="temporal-panel-label">Legend</div>
+        <div class="temporal-legend-item"><span class="temporal-dot" style="background:#9966CC;"></span>Cultural &amp; Heritage</div>
+        <div class="temporal-legend-item"><span class="temporal-dot" style="background:#5B9DE8;"></span>Green &amp; Recreation</div>
+        <div class="temporal-legend-item"><span class="temporal-dot" style="background:#F0D060;"></span>Commercial</div>
+      </div>
+    </aside>
+
+    <!-- Map Display Panel -->
+    <div class="temporal-map-wrap">
+      <div id="map-temporal"></div>
+      <div id="temporal-tooltip" style="display:none;"></div>
     </div>
-  </section>
+  </div>
+
+  <p class="map-source" style="padding: 0.5rem 2.5rem;">
+    Data: Wikipedia Pageviews API
+  </p>
+</section>
 
   <hr class="divider"/>
 
-  <!-- SECTION 5 · Map 4 -->
-  <section id="map4" class="bg-light">
+  <!-- SECTION 5 · Map 4 · Digital Attention by Borough -->
+<section id="map4" class="bg-light">
+  <!-- Section header (constrained width) -->
+  <div class="section-inner borough-header">
+    <p class="section-label">05 · Visualisation 4</p>
+    <h2 class="section-title">Digital Attention by Borough</h2>
+    <hr class="rule"/>
+    <p class="section-subtitle">
+      Replay monthly changes in total Wikipedia pageviews across London boroughs,
+      and compare how borough rankings shift under different major categories.
+    </p>
+  </div>
+
+  <!-- Controls -->
+  <div class="borough-controls-wrap">
+    <div id="borough-current-month" class="borough-current-month">Jan</div>
+
+    <!-- Play Button -->
+    <button id="borough-play-btn" class="borough-play-btn">Play</button>
+
+    <!-- Slider -->
+    <div class="borough-slider-wrap">
+      <span class="borough-slider-label">Jan</span>
+      <input
+        type="range"
+        id="borough-slider"
+        min="0"
+        max="11"
+        step="1"
+        value="0"
+      />
+      <span class="borough-slider-label">Dec</span>
+    </div>
+
+    <!-- Category Button -->
+    <div class="borough-category-group">
+      <button class="borough-cat-btn active" data-category="All">All</button>
+      <button class="borough-cat-btn" data-category="Cultural_Heritage">Cultural &amp; Heritage</button>
+      <button class="borough-cat-btn" data-category="Green_Recreation">Green &amp; Recreation</button>
+      <button class="borough-cat-btn" data-category="Commercial">Commercial</button>
+    </div>
+  </div>
+
+  <!-- Layout -->
+  <div class="borough-layout">
+    <div class="borough-chart-panel">
+      <div id="borough-bar-chart"></div>
+    </div>
+
+    <aside class="borough-summary-panel">
+      <div class="borough-summary-block">
+        <div class="borough-summary-label">Total Pageviews Across London</div>
+        <div class="borough-summary-value" id="borough-total-value">0</div>
+      </div>
+
+      <div class="borough-summary-block">
+        <div class="borough-summary-label">Top 5 Boroughs</div>
+        <ol class="borough-top5-list" id="borough-top5-list"></ol>
+      </div>
+    </aside>
+  </div>
+
+  <p class="map-source" style="padding: 0.5rem 2.5rem;">
+    Data: Wikipedia Pageviews API · London Boroughs
+  </p>
+</section>
+  
+  <hr class="divider"/>
+
+  <!-- SECTION 6 · Map 5 -->
+  <section id="map5" class="bg-light">
     <div class="section-inner">
-      <p class="section-label">05 · Visualisation 4</p>
+      <p class="section-label">06 · Visualisation 5</p>
       <h2 class="section-title">Map Title Here</h2>
       <hr class="rule"/>
       <p class="section-subtitle">Describe this fourth visualisation and the key spatial patterns it reveals.</p>
@@ -444,3 +573,5 @@
 
 </body>
 </html>
+
+
