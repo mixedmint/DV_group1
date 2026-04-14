@@ -629,6 +629,748 @@ function updateP4Chart(layerKey) {
 }
 
 // ── Close P4 popup ────────────────────────────
-document.getElementById('p4-popup-close').addEventListener('click', () => {
-  document.getElementById('p4-popup').style.display = 'none';
-});
+const p4PopupClose = document.getElementById('p4-popup-close');
+if (p4PopupClose) {
+  p4PopupClose.addEventListener('click', () => {
+    const p4Popup = document.getElementById('p4-popup');
+    if (p4Popup) p4Popup.style.display = 'none';
+  });
+}
+
+// ═══════════════════════════════════════════════
+//  P5 · Temporal Dynamics
+// ═══════════════════════════════════════════════
+
+// ── Configuration Constants ─────────────
+const TEMPORAL_FILES = {
+  pois:     'data/london_poi_temporal.geojson',
+  overall:  'data/temporal_overall.json',
+  major:    'data/temporal_major.json',
+  minor:    'data/temporal_minor.json',
+  boundary: 'data/London_GLA_Boundary.geojson'
+};
+
+const TEMPORAL_COLORS = {
+  Cultural_Heritage: '#9966CC',
+  Green_Recreation:  '#5B9DE8',
+  Commercial:        '#F0D060'
+};
+
+const TEMPORAL_MINOR_ORDER = [
+  'church',
+  'library',
+  'museum',
+  'theatre',
+  'park',
+  'nature_reserve',
+  'amusement_park',
+  'zoo',
+  'shopping_center'
+];
+
+const TEMPORAL_MINOR_LABELS = {
+  church: 'Church',
+  library: 'Library',
+  museum: 'Museum',
+  theatre: 'Theatre',
+  park: 'Park',
+  nature_reserve: 'Nature Reserve',
+  amusement_park: 'Amusement Park',
+  zoo: 'Zoo',
+  shopping_center: 'Shopping Center'
+};
+
+const TEMPORAL_MAJOR_LABELS = {
+  Cultural_Heritage: 'Cultural & Heritage',
+  Green_Recreation: 'Green & Recreation',
+  Commercial: 'Commercial'
+};
+
+const temporalMonthMarkerPlugin = {
+  id: 'temporalMonthMarker',
+  afterDatasetsDraw(chart, args, pluginOptions) {
+    const index = pluginOptions?.index;
+    if (index == null) return;
+
+    const xScale = chart.scales.x;
+    const yScale = chart.scales.y;
+    if (!xScale || !yScale) return;
+
+    const label = chart.data.labels[index];
+    const x = xScale.getPixelForValue(label);
+    const ctx = chart.ctx;
+
+    ctx.save();
+    ctx.beginPath();
+    ctx.moveTo(x, yScale.top);
+    ctx.lineTo(x, yScale.bottom);
+    ctx.lineWidth = 1.2;
+    ctx.strokeStyle = 'rgba(86, 201, 214, 0.9)';
+    ctx.stroke();
+
+    ctx.beginPath();
+    ctx.arc(x, yScale.top + 4, 3, 0, Math.PI * 2);
+    ctx.fillStyle = 'rgba(86, 201, 214, 0.95)';
+    ctx.fill();
+    ctx.restore();
+  }
+};
+
+Chart.register(temporalMonthMarkerPlugin);
+
+// ── Temporal IIFE ─────────────
+(function initTemporalSection() {
+  const mapContainer = document.getElementById('map-temporal');
+  if (!mapContainer) return;
+
+  const state = {
+    monthIndex: 0,
+    monthKey: '202501',
+    monthLabel: 'Jan',
+    mode: 'major',
+    minorSelected: 'church'
+  };
+
+  let mapTemporal = null;
+  let temporalPoiData = null;
+  let temporalOverall = [];
+  let temporalMajor = [];
+  let temporalMinor = [];
+  let boundaryData = null;
+
+  let overallChart = null;
+  let detailChart = null;
+
+  const monthLabelEl   = document.getElementById('temporal-current-month');
+  const sliderEl       = document.getElementById('temporal-slider');
+  const minorWrapEl    = document.getElementById('temporal-minor-wrap');
+  const minorSelectEl  = document.getElementById('temporal-minor-select');
+  const detailTitleEl  = document.getElementById('temporal-detail-title');
+  const tooltipEl      = document.getElementById('temporal-tooltip');
+
+  // ── Data Loading ─────────────
+  Promise.all([
+    fetch(TEMPORAL_FILES.pois).then(r => r.json()),
+    fetch(TEMPORAL_FILES.overall).then(r => r.json()),
+    fetch(TEMPORAL_FILES.major).then(r => r.json()),
+    fetch(TEMPORAL_FILES.minor).then(r => r.json()),
+    fetch(TEMPORAL_FILES.boundary).then(r => r.json())
+  ]).then(([poiData, overallData, majorData, minorData, glaData]) => {
+    temporalPoiData = poiData;
+    temporalOverall = overallData;
+    temporalMajor   = majorData;
+    temporalMinor   = minorData;
+    boundaryData    = glaData;
+
+    state.monthIndex = temporalOverall[0].month_index;
+    state.monthKey   = temporalOverall[0].month_key;
+    state.monthLabel = temporalOverall[0].month_label;
+
+    buildMinorDropdown();
+    initTemporalMap();
+    renderOverallChart();
+    renderDetailChart();
+    bindTemporalControls();
+    updateMonthUI();
+  }).catch(err => {
+    console.error('Temporal section failed to load:', err);
+  });
+
+// ── Temporal Initialization ─────────────
+
+  function buildMinorDropdown() {
+    minorSelectEl.innerHTML = '';
+    TEMPORAL_MINOR_ORDER.forEach(key => {
+      const option = document.createElement('option');
+      option.value = key;
+      option.textContent = TEMPORAL_MINOR_LABELS[key];
+      minorSelectEl.appendChild(option);
+    });
+    minorSelectEl.value = state.minorSelected;
+  }
+
+  // ── Map ─────────────
+  function initTemporalMap() {
+    mapTemporal = new mapboxgl.Map({
+      container: 'map-temporal',
+      style: 'mapbox://styles/mapbox/dark-v11',
+      center: [-0.118, 51.509],
+      zoom: 9.2,
+      attributionControl: false
+    });
+
+    mapTemporal.addControl(new mapboxgl.AttributionControl({ compact: true }));
+    mapTemporal.addControl(new mapboxgl.NavigationControl(), 'top-left');
+
+    mapTemporal.on('load', () => {
+      mapTemporal.addSource('temporal-pois', {
+        type: 'geojson',
+        data: temporalPoiData
+      });
+
+      mapTemporal.addLayer({
+        id: 'temporal-poi-circles',
+        type: 'circle',
+        source: 'temporal-pois',
+        paint: getTemporalCirclePaint(state.monthKey)
+      });
+
+      mapTemporal.addSource('temporal-gla-boundary', {
+        type: 'geojson',
+        data: boundaryData
+      });
+
+      mapTemporal.addLayer({
+        id: 'temporal-gla-outline',
+        type: 'line',
+        source: 'temporal-gla-boundary',
+        paint: {
+          'line-color': 'rgba(255,255,255,0.6)',
+          'line-width': 1.5
+        }
+      });
+
+      const feature = boundaryData.features ? boundaryData.features[0] : boundaryData;
+      const geom = feature.geometry;
+      const outerRing = [[-180,-90],[180,-90],[180,90],[-180,90],[-180,-90]];
+      const maskCoords = [outerRing];
+
+      if (geom.type === 'Polygon') {
+        geom.coordinates.forEach(ring => maskCoords.push(ring));
+      } else {
+        geom.coordinates.forEach(poly => poly.forEach(ring => maskCoords.push(ring)));
+      }
+
+      mapTemporal.addSource('temporal-london-mask', {
+        type: 'geojson',
+        data: {
+          type: 'Feature',
+          geometry: {
+            type: 'Polygon',
+            coordinates: maskCoords
+          }
+        }
+      });
+
+      mapTemporal.addLayer({
+       id: 'temporal-london-mask-fill',
+        type: 'fill',
+        source: 'temporal-london-mask',
+       paint: {
+         'fill-color': '#ffffff',
+          'fill-opacity': 0.10
+        }
+      });
+      
+      const bounds = new mapboxgl.LngLatBounds();
+      boundaryData.features[0].geometry.coordinates.flat(2).forEach(coord => {
+        if (Array.isArray(coord) && coord.length === 2) bounds.extend(coord);
+      });
+      if (!bounds.isEmpty()) mapTemporal.fitBounds(bounds, { padding: 30, duration: 0 });
+
+      setupTemporalMapHover();
+    });
+  }
+
+  function getTemporalCirclePaint(monthKey) {
+    return {
+      'circle-color': [
+        'match', ['get', 'major_category'],
+        'Cultural_Heritage', TEMPORAL_COLORS.Cultural_Heritage,
+        'Green_Recreation',  TEMPORAL_COLORS.Green_Recreation,
+        'Commercial',        TEMPORAL_COLORS.Commercial,
+        '#999999'
+      ],
+      'circle-radius': [
+        'interpolate', ['exponential', 1.7],
+        ['to-number', ['get', monthKey]],
+        0, 1,
+        20, 3,
+        50, 6,
+        200, 10,
+        1000, 15,
+        5000, 18,
+        20000, 26,
+        50000, 30,
+        150000, 38
+      ],
+      'circle-opacity': 0.82,
+      'circle-stroke-width': 0.8,
+      'circle-stroke-color': 'rgba(255,255,255,0.7)'
+    };
+  }
+
+    // ── Hover ─────────────
+  function setupTemporalMapHover() {
+    mapTemporal.on('mousemove', 'temporal-poi-circles', (e) => {
+      mapTemporal.getCanvas().style.cursor = 'pointer';
+
+      const p = e.features[0].properties;
+      const value = Number(p[state.monthKey] || 0).toLocaleString();
+      const borough = p.borough || 'Unknown';
+
+      tooltipEl.innerHTML = `
+        <div class="tt-name">${p.poi_name}</div>
+        <div class="tt-row">${state.monthLabel}: ${value} pageviews</div>
+        <div class="tt-row">Category: ${p.major_label} - ${p.minor_label}</div>
+        <div class="tt-row">Borough: ${borough}</div>
+      `;
+
+      tooltipEl.style.display = 'block';
+      tooltipEl.style.left = (e.originalEvent.clientX + 12) + 'px';
+      tooltipEl.style.top  = (e.originalEvent.clientY + 12) + 'px';
+    });
+
+    mapTemporal.on('mouseleave', 'temporal-poi-circles', () => {
+      mapTemporal.getCanvas().style.cursor = '';
+      tooltipEl.style.display = 'none';
+    });
+  }
+
+    // ── update data ─────────────
+  function updateTemporalMapMonth() {
+    if (!mapTemporal || !mapTemporal.getLayer('temporal-poi-circles')) return;
+    mapTemporal.setPaintProperty(
+      'temporal-poi-circles',
+      'circle-radius',
+      getTemporalCirclePaint(state.monthKey)['circle-radius']
+    );
+  }
+
+  function updateMonthUI() {
+    monthLabelEl.textContent = state.monthLabel;
+    sliderEl.value = state.monthIndex;
+    updateTemporalMapMonth();
+    updateChartMonthMarker();
+  }
+
+  // ── Trend ─────────────
+  function renderOverallChart() {
+    const labels = temporalOverall.map(d => d.month_label);
+    const values = temporalOverall.map(d => d.value);
+
+    if (overallChart) overallChart.destroy();
+
+    const ctx = document.getElementById('temporal-overall-chart').getContext('2d');
+    overallChart = new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels,
+        datasets: [{
+          label: 'Overall Attention',
+          data: values,
+          borderColor: '#333131',
+          borderWidth: 2,
+          pointRadius: 0,
+          pointHoverRadius: 3,
+          tension: 0.28
+        }]
+      },
+      options: getBaseTemporalChartOptions(state.monthIndex, false)
+    });
+
+    document.getElementById('temporal-overall-chart').onclick = (evt) => {
+      handleChartClick(evt, overallChart);
+    };
+  }
+
+  function renderDetailChart() {
+    if (detailChart) detailChart.destroy();
+
+    const ctx = document.getElementById('temporal-detail-chart').getContext('2d');
+
+    if (state.mode === 'major') {
+      detailTitleEl.textContent = 'Category Trends';
+      minorWrapEl.style.display = 'none';
+
+      const labels = temporalOverall.map(d => d.month_label);
+      const majorOrder = ['Cultural_Heritage', 'Green_Recreation', 'Commercial'];
+
+      const datasets = majorOrder.map(catKey => {
+        const series = temporalMajor
+          .filter(d => d.major_category === catKey)
+          .sort((a, b) => a.month_index - b.month_index);
+
+        return {
+          label: TEMPORAL_MAJOR_LABELS[catKey],
+          data: series.map(d => d.value),
+          borderColor: TEMPORAL_COLORS[catKey],
+          borderWidth: 2,
+          pointRadius: 0,
+          pointHoverRadius: 3,
+          tension: 0.28
+        };
+      });
+
+      detailChart = new Chart(ctx, {
+        type: 'line',
+        data: { labels, datasets },
+        options: getBaseTemporalChartOptions(state.monthIndex, true)
+      });
+
+    } else {
+      detailTitleEl.textContent = 'Minor Category Trend';
+      minorWrapEl.style.display = 'block';
+
+      const labels = temporalOverall.map(d => d.month_label);
+      const series = temporalMinor
+        .filter(d => d.minor_category === state.minorSelected)
+        .sort((a, b) => a.month_index - b.month_index);
+
+      const parentMajor = series[0]?.major_category || 'Cultural_Heritage';
+      const lineColor = TEMPORAL_COLORS[parentMajor];
+
+      detailChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+          labels,
+          datasets: [{
+            label: TEMPORAL_MINOR_LABELS[state.minorSelected],
+            data: series.map(d => d.value),
+            borderColor: lineColor,
+            borderWidth: 2,
+            pointRadius: 0,
+            pointHoverRadius: 3,
+            tension: 0.28
+          }]
+        },
+        options: getBaseTemporalChartOptions(state.monthIndex, false)
+      });
+    }
+
+    document.getElementById('temporal-detail-chart').onclick = (evt) => {
+      handleChartClick(evt, detailChart);
+    };
+  }
+
+  function getBaseTemporalChartOptions(monthIndex, showLegend) {
+    return {
+      responsive: true,
+      maintainAspectRatio: false,
+      interaction: {
+        mode: 'nearest',
+        intersect: false
+      },
+      plugins: {
+        legend: {
+          display: showLegend,
+          position: 'bottom',
+          labels: {
+            boxWidth: 10,
+            boxHeight: 10,
+            color: '#666666',
+            font: { size: 11 }
+          }
+        },
+        tooltip: {
+          callbacks: {
+            label: function(context) {
+              const value = Number(context.raw || 0).toLocaleString();
+              return `${context.dataset.label}: ${value}`;
+            }
+          }
+        },
+        temporalMonthMarker: {
+          index: monthIndex
+        }
+      },
+      scales: {
+        x: {
+          ticks: {
+            color: '#888585',
+            font: { size: 11 }
+          },
+          grid: {
+            color: 'rgba(200,198,198,0.35)'
+          }
+        },
+        y: {
+          ticks: {
+            color: '#888585',
+            font: { size: 11 },
+            callback: (value) => formatAxisTick(value)
+          },
+          grid: {
+            color: 'rgba(200,198,198,0.35)'
+          }
+        }
+      }
+    };
+  }
+
+  function updateChartMonthMarker() {
+    if (overallChart) {
+      overallChart.options.plugins.temporalMonthMarker.index = state.monthIndex;
+      overallChart.update('none');
+    }
+    if (detailChart) {
+      detailChart.options.plugins.temporalMonthMarker.index = state.monthIndex;
+      detailChart.update('none');
+    }
+  }
+
+  function bindTemporalControls() {
+    sliderEl.addEventListener('input', (e) => {
+      const nextIndex = Number(e.target.value);
+      setTemporalMonth(nextIndex);
+    });
+
+    document.querySelectorAll('.temporal-mode-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.temporal-mode-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        state.mode = btn.dataset.mode;
+        renderDetailChart();
+        updateChartMonthMarker();
+      });
+    });
+
+    minorSelectEl.addEventListener('change', (e) => {
+      state.minorSelected = e.target.value;
+      if (state.mode === 'minor') {
+        renderDetailChart();
+        updateChartMonthMarker();
+      }
+    });
+  }
+
+  function setTemporalMonth(nextIndex) {
+    const next = temporalOverall.find(d => d.month_index === nextIndex);
+    if (!next) return;
+
+    state.monthIndex = next.month_index;
+    state.monthKey   = next.month_key;
+    state.monthLabel = next.month_label;
+
+    updateMonthUI();
+  }
+
+  function handleChartClick(evt, chart) {
+    const points = chart.getElementsAtEventForMode(evt, 'nearest', { intersect: false }, true);
+    if (!points.length) return;
+    const clickedIndex = points[0].index;
+    setTemporalMonth(clickedIndex);
+  }
+
+  function formatAxisTick(value) {
+    if (value >= 1000000) return (value / 1000000).toFixed(1) + 'M';
+    if (value >= 1000) return (value / 1000).toFixed(0) + 'k';
+    return value;
+  }
+})();
+
+// ═══════════════════════════════════════════════
+//  P6 · Digital Attention by Borough
+// ═══════════════════════════════════════════════
+
+// ── Configuration Constants ─────────────
+const BOROUGH_FILES = {
+  ranking: 'data/temporal_borough_ranking.json',
+  summary: 'data/temporal_borough_summary.json',
+  meta:    'data/temporal_borough_meta.json'
+};
+
+const BOROUGH_COLORS = {
+  All: '#4E79A7',
+  Cultural_Heritage: '#9966CC',
+  Green_Recreation: '#5B9DE8',
+  Commercial: '#F0D060'
+};
+
+// ── Borough IIFE ─────────────
+(function initBoroughSection() {
+  const chartWrap = document.getElementById('borough-bar-chart');
+  if (!chartWrap) return;
+
+  const state = {
+    monthIndex: 0,
+    categoryKey: 'All',
+    playing: false,
+    timer: null
+  };
+
+  let rankingData = [];
+  let summaryData = [];
+  let metaData = null;
+
+  const monthEl = document.getElementById('borough-current-month');
+  const sliderEl = document.getElementById('borough-slider');
+  const playBtn = document.getElementById('borough-play-btn');
+  const totalEl = document.getElementById('borough-total-value');
+  const top5El = document.getElementById('borough-top5-list');
+  const catBtns = document.querySelectorAll('.borough-cat-btn');
+
+  // ── Data Loading ─────────────
+  Promise.all([
+    fetch(BOROUGH_FILES.ranking).then(r => r.json()),
+    fetch(BOROUGH_FILES.summary).then(r => r.json()),
+    fetch(BOROUGH_FILES.meta).then(r => r.json())
+  ]).then(([ranking, summary, meta]) => {
+    rankingData = ranking;
+    summaryData = summary;
+    metaData = meta;
+
+    const maxIndex = metaData.months.length - 1;
+    sliderEl.max = maxIndex;
+    sliderEl.value = state.monthIndex;
+
+    bindBoroughControls();
+    updateBoroughView();
+    window.addEventListener('resize', updateBoroughView);
+  }).catch(err => {
+    console.error('Borough section failed to load:', err);
+  });
+
+  // ── User Interaction ─────────────
+  function bindBoroughControls() {
+    sliderEl.addEventListener('input', (e) => {
+      stopPlayback();
+      state.monthIndex = Number(e.target.value);
+      updateBoroughView();
+    });
+
+    playBtn.addEventListener('click', () => {
+      if (state.playing) {
+        stopPlayback();
+      } else {
+        startPlayback();
+      }
+    });
+
+    catBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        stopPlayback();
+        catBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        state.categoryKey = btn.dataset.category;
+        updateBoroughView();
+      });
+    });
+  }
+
+  function startPlayback() {
+    if (state.playing) return;
+    state.playing = true;
+    playBtn.textContent = 'Pause';
+
+    state.timer = setInterval(() => {
+      const maxIndex = metaData.months.length - 1;
+      state.monthIndex = state.monthIndex >= maxIndex ? 0 : state.monthIndex + 1;
+      updateBoroughView();
+    }, 1000);
+  }
+
+  function stopPlayback() {
+    state.playing = false;
+    playBtn.textContent = 'Play';
+    if (state.timer) {
+      clearInterval(state.timer);
+      state.timer = null;
+    }
+  }
+
+  function updateBoroughView() {
+    const monthMeta = metaData.months.find(d => d.month_index === state.monthIndex);
+    if (!monthMeta) return;
+
+    monthEl.textContent = monthMeta.month_label;
+    sliderEl.value = state.monthIndex;
+
+    renderBoroughChart();
+    renderBoroughSummary();
+  }
+
+  // ── Chart ─────────────
+  function renderBoroughChart() {
+    const rows = rankingData
+      .filter(d => d.month_index === state.monthIndex)
+      .filter(d => d.category_key === state.categoryKey)
+      .sort((a, b) => b.value - a.value);
+
+    if (!rows.length) return;
+
+    const margin = { top: 16, right: 90, bottom: 28, left: 150 };
+    const rowHeight = 22;
+    const innerHeight = rows.length * rowHeight;
+    const width = chartWrap.clientWidth || 900;
+    const height = innerHeight + margin.top + margin.bottom;
+    const innerWidth = width - margin.left - margin.right;
+
+    const x = d3.scaleLinear()
+      .domain([0, d3.max(rows, d => d.value)]).nice()
+      .range([0, innerWidth]);
+
+    const y = d3.scaleBand()
+      .domain(rows.map(d => d.borough))
+      .range([0, innerHeight])
+      .padding(0.16);
+
+    d3.select(chartWrap).selectAll('*').remove();
+
+    const svg = d3.select(chartWrap)
+      .append('svg')
+      .attr('width', width)
+      .attr('height', height);
+
+    const g = svg.append('g')
+      .attr('transform', `translate(${margin.left},${margin.top})`);
+
+    // x axis
+    g.append('g')
+      .attr('class', 'borough-axis')
+      .attr('transform', `translate(0,${innerHeight})`)
+      .call(
+        d3.axisBottom(x)
+          .ticks(6)
+          .tickFormat(d => {
+            if (d >= 1000000) return (d / 1000000).toFixed(1) + 'M';
+            if (d >= 1000) return (d / 1000).toFixed(0) + 'k';
+            return d;
+          })
+      );
+
+    // y axis
+    g.append('g')
+      .attr('class', 'borough-axis')
+      .call(d3.axisLeft(y).tickSize(0))
+      .call(g => g.select('.domain').remove());
+
+    const barColor = BOROUGH_COLORS[state.categoryKey] || '#4E79A7';
+
+    g.selectAll('.borough-bar')
+      .data(rows, d => d.borough)
+      .join('rect')
+      .attr('class', 'borough-bar')
+      .attr('x', 0)
+      .attr('y', d => y(d.borough))
+      .attr('height', y.bandwidth())
+      .attr('width', d => x(d.value))
+      .attr('fill', barColor)
+      .attr('opacity', 0.88);
+
+    g.selectAll('.borough-value-label')
+      .data(rows, d => d.borough)
+      .join('text')
+      .attr('class', 'borough-value-label')
+      .attr('x', d => x(d.value) + 6)
+      .attr('y', d => y(d.borough) + y.bandwidth() / 2 + 4)
+      .text(d => d3.format(',')(Math.round(d.value)));
+  }
+    
+  // ── Summary ─────────────
+  function renderBoroughSummary() {
+    const row = summaryData.find(
+      d => d.month_index === state.monthIndex && d.category_key === state.categoryKey
+    );
+    if (!row) return;
+
+    totalEl.textContent = d3.format(',')(Math.round(row.london_total_pageviews));
+
+    top5El.innerHTML = '';
+    row.top5_boroughs.forEach(item => {
+      const li = document.createElement('li');
+      li.textContent = `${item.borough} — ${d3.format(',')(Math.round(item.value))}`;
+      top5El.appendChild(li);
+    });
+  }
+})();
