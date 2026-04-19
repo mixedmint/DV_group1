@@ -1374,3 +1374,723 @@ const BOROUGH_COLORS = {
     });
   }
 })();
+
+// ═══════════════════════════════════════════════
+//  Visualisation 5 · Attention and Socio-economic Context
+// ═══════════════════════════════════════════════
+
+const P5_FILES = {
+  all: 'data/heatmap/msoa_hotspot_all.geojson',
+  cultural: 'data/heatmap/msoa_hotspot_cultural.geojson',
+  green: 'data/heatmap/msoa_hotspot_green.geojson',
+  commercial: 'data/heatmap/msoa_hotspot_commercial.geojson',
+  pois: 'data/london_all_poi.geojson',
+  socio: 'data/socio_eco/msoa_socioeconomic_normalized.csv'
+};
+
+const P5_CATEGORY_LABELS = {
+  all: 'All POIs',
+  cultural: 'Cultural & Heritage',
+  green: 'Green & Recreation',
+  commercial: 'Commercial'
+};
+
+const P5_CATEGORY_COLORS = {
+  all: '#56C9D6',
+  cultural: '#9966CC',
+  green: '#5B9DE8',
+  commercial: '#F0D060'
+};
+
+const P5_HEX_COLOR_RANGE = [
+  [237, 220, 255, 112],
+  [215, 184, 247, 130],
+  [190, 142, 232, 150],
+  [158, 94, 205, 170],
+  [125, 55, 174, 190],
+  [92, 25, 135, 210]
+];
+
+const P5_HEX_ELEVATION_SCALES = {
+  all: 1600,
+  cultural: 1600,
+  green: 1600,
+  commercial: 1600
+};
+
+const P5_SOCIO_LABELS = {
+  imd: 'IMD deprivation score',
+  density: 'Population density',
+  ptal: 'Public transport accessibility'
+};
+
+const P5_SOCIO_AXIS_LABELS = {
+  imd: 'IMD score',
+  density: 'Population density',
+  ptal: 'Average PTAL/PTAI'
+};
+
+const P5_SOCIO_TEXT_LABELS = {
+  imd: 'deprivation',
+  density: 'population density',
+  ptal: 'public transport accessibility'
+};
+
+const P5_VIEW_PRESETS = {
+  top: { zoom: 9.08, pitch: 0, bearing: 0 },
+  balanced: { zoom: 9.16, pitch: 32, bearing: -10 },
+  threeD: { zoom: 9.25, pitch: 50, bearing: -18 }
+};
+
+(function initSocioEconomicSection() {
+  const mapContainer = document.getElementById('map-p5');
+  if (!mapContainer) return;
+
+  const state = {
+    category: 'all',
+    socio: 'imd',
+    selectedCode: null
+  };
+
+  let mapP5 = null;
+  let mergedGeojson = null;
+  let scatterData = [];
+  let p5PoiData = [];
+  let p5DeckOverlay = null;
+
+  const tooltip = document.getElementById('p5-tooltip');
+  const selectedCard = document.getElementById('p5-selected-card');
+  const scatterEl = document.getElementById('p5-scatter');
+  const scatterTitleEl = document.getElementById('p5-scatter-title');
+  const correlationEl = document.getElementById('p5-correlation');
+  const correlationNoteEl = document.getElementById('p5-correlation-note');
+  const socioLegendTitleEl = document.getElementById('p5-socio-legend-title');
+
+  Promise.all([
+    fetch(P5_FILES.all).then(r => r.json()),
+    fetch(P5_FILES.cultural).then(r => r.json()),
+    fetch(P5_FILES.green).then(r => r.json()),
+    fetch(P5_FILES.commercial).then(r => r.json()),
+    fetch(P5_FILES.pois).then(r => r.json()),
+    d3.csv(P5_FILES.socio, d3.autoType)
+  ]).then(([allData, culturalData, greenData, commercialData, poiData, socioRows]) => {
+    mergedGeojson = mergeP5Data({ allData, culturalData, greenData, commercialData, socioRows });
+    scatterData = mergedGeojson.features.map(f => f.properties);
+    p5PoiData = poiData.features
+      .map(feature => ({
+        ...feature,
+        properties: {
+          ...feature.properties,
+          total_2025: toNumberOrZero(feature.properties.total_2025)
+        }
+      }))
+      .filter(feature => feature.geometry?.type === 'Point' && feature.properties.total_2025 > 0);
+
+    initP5Map();
+    bindP5Controls();
+    updateP5Legend();
+    renderP5Scatter();
+    updateP5Selected(null);
+    window.addEventListener('resize', renderP5Scatter);
+  }).catch(err => {
+    console.error('Socio-economic section failed to load:', err);
+  });
+
+  function mergeP5Data({ allData, culturalData, greenData, commercialData, socioRows }) {
+    const socioByMsoa = new Map(socioRows.map(row => [row.msoa, row]));
+    const sourceByKey = {
+      all: allData,
+      cultural: culturalData,
+      green: greenData,
+      commercial: commercialData
+    };
+
+    const attentionLookup = {};
+    Object.entries(sourceByKey).forEach(([key, geojson]) => {
+      attentionLookup[key] = new Map(
+        geojson.features.map(feature => [feature.properties.area_code, feature.properties])
+      );
+    });
+
+    return {
+      type: 'FeatureCollection',
+      features: allData.features.map(feature => {
+        const code = feature.properties.area_code;
+        const socio = socioByMsoa.get(code) || {};
+        const nextProps = {
+          ...feature.properties,
+          imd: toNumberOrNull(socio.imd),
+          density: toNumberOrNull(socio.density),
+          ptal: toNumberOrNull(socio.ptal),
+          imd_norm: toNumberOrNull(socio.imd_norm),
+          density_norm: toNumberOrNull(socio.density_norm),
+          ptal_norm: toNumberOrNull(socio.ptal_norm)
+        };
+
+        Object.keys(sourceByKey).forEach(key => {
+          const props = attentionLookup[key].get(code) || {};
+          nextProps[`attention_${key}`] = toNumberOrZero(props.attention);
+          nextProps[`log_attention_${key}`] = toNumberOrZero(props.log_attention);
+        });
+
+        return {
+          ...feature,
+          properties: nextProps
+        };
+      })
+    };
+  }
+
+  function initP5Map() {
+    mapP5 = new mapboxgl.Map({
+      container: 'map-p5',
+      style: 'mapbox://styles/mapbox/dark-v11',
+      center: [-0.118, 51.509],
+      ...P5_VIEW_PRESETS.balanced,
+      dragRotate: true,
+      pitchWithRotate: true,
+      touchPitch: true,
+      touchZoomRotate: true,
+      attributionControl: false
+    });
+
+    mapP5.addControl(new mapboxgl.AttributionControl({ compact: true }));
+    mapP5.addControl(new mapboxgl.NavigationControl(), 'top-left');
+    mapP5.scrollZoom.enable();
+    mapP5.dragRotate.enable();
+    mapP5.touchZoomRotate.enable();
+    if (mapP5.touchZoomRotate.enableRotation) mapP5.touchZoomRotate.enableRotation();
+    if (mapP5.touchPitch?.enable) mapP5.touchPitch.enable();
+
+    mapP5.on('load', () => {
+      mapP5.addSource('p5-msoa', {
+        type: 'geojson',
+        data: mergedGeojson,
+        promoteId: 'area_code'
+      });
+
+      mapP5.addLayer({
+        id: 'p5-socio-fill',
+        type: 'fill',
+        source: 'p5-msoa',
+        paint: getP5SocioPaint()
+      });
+
+      mapP5.addLayer({
+        id: 'p5-msoa-outline',
+        type: 'line',
+        source: 'p5-msoa',
+        paint: {
+          'line-color': 'rgba(255,255,255,0.32)',
+          'line-width': 0.45
+        }
+      });
+
+      mapP5.addLayer({
+        id: 'p5-msoa-highlight',
+        type: 'line',
+        source: 'p5-msoa',
+        filter: ['==', 'area_code', ''],
+        paint: {
+          'line-color': '#ffffff',
+          'line-width': 2.5
+        }
+      });
+
+      initP5HexLayer();
+      setupP5MapInteractions();
+    });
+  }
+
+  function getP5SocioPaint() {
+    const ramps = {
+      imd: ['#f7fbff', '#d0e1f2', '#9ecae1', '#4292c6', '#2171b5', '#08306b'],
+      density: ['#fff7bc', '#fee391', '#fec44f', '#fe9929', '#ec7014', '#b30000'],
+      ptal: ['#f7fcf5', '#d9f0d3', '#addd8e', '#74c476', '#31a354', '#006d2c']
+    };
+    const ramp = ramps[state.socio] || ramps.imd;
+    const breaks = getP5SocioBreaks(state.socio);
+
+    return {
+      'fill-color': [
+        'step',
+        ['coalesce', ['to-number', ['get', state.socio]], breaks[2] ?? 0],
+        ramp[0],
+        breaks[1], ramp[1],
+        breaks[2], ramp[2],
+        breaks[3], ramp[3],
+        breaks[4], ramp[4],
+        breaks[5], ramp[5]
+      ],
+      'fill-opacity': [
+        'case',
+        ['boolean', ['feature-state', 'selected'], false], 0.96,
+        0.84
+      ]
+    };
+  }
+
+  function initP5HexLayer() {
+    refreshP5HexLayer();
+  }
+
+  function refreshP5HexLayer() {
+    if (!window.deck?.MapboxOverlay || !window.deck?.HexagonLayer) {
+      console.warn('deck.gl is not available; P5 hexbin attention layer was skipped.');
+      return;
+    }
+
+    if (p5DeckOverlay && mapP5) {
+      try {
+        mapP5.removeControl(p5DeckOverlay);
+      } catch (err) {
+        console.warn('Previous P5 deck.gl overlay could not be removed cleanly:', err);
+      }
+      p5DeckOverlay = null;
+    }
+
+    p5DeckOverlay = new deck.MapboxOverlay({
+      interleaved: false,
+      layers: [buildP5HexLayer()]
+    });
+    mapP5.addControl(p5DeckOverlay);
+  }
+
+  function buildP5HexLayer() {
+    const data = getP5FilteredPois();
+
+    return new deck.HexagonLayer({
+      id: `p5-attention-hexbin-${state.category}`,
+      data,
+      pickable: true,
+      extruded: true,
+      radius: 850,
+      coverage: 0.58,
+      opacity: 0.56,
+      elevationScale: P5_HEX_ELEVATION_SCALES[state.category] || P5_HEX_ELEVATION_SCALES.all,
+      elevationRange: [0, 10],
+      material: {
+        ambient: 0.55,
+        diffuse: 0.42,
+        shininess: 24,
+        specularColor: [255, 255, 255]
+      },
+      colorRange: getP5HexColorRange(),
+      colorDomain: [0.14, 1.99],
+      getPosition: d => d.geometry.coordinates,
+      getColorWeight: d => d.properties.total_2025,
+      getElevationWeight: d => d.properties.total_2025,
+      getColorValue: points => getP5HexHeightValue(points),
+      getElevationValue: points => getP5HexHeightValue(points),
+      onHover: info => {
+        if (info.object) {
+          showP5HexTooltip(info.object, info.x, info.y);
+        } else {
+          tooltip.style.display = 'none';
+        }
+      },
+      onClick: info => {
+        if (!info.coordinate || !mapP5) return;
+        const point = mapP5.project(info.coordinate);
+        const features = mapP5.queryRenderedFeatures(point, { layers: ['p5-socio-fill'] });
+        if (features.length) selectP5Area(features[0].properties.area_code, false);
+      },
+      updateTriggers: {
+        getColorWeight: state.category,
+        getElevationWeight: state.category,
+        getColorValue: state.category,
+        getElevationValue: state.category,
+        colorRange: state.category
+      }
+    });
+  }
+
+  function getP5FilteredPois() {
+    if (state.category === 'all') return p5PoiData;
+    const categoryLookup = {
+      cultural: 'Cultural_Heritage',
+      green: 'Green_Recreation',
+      commercial: 'Commercial'
+    };
+    return p5PoiData.filter(feature => String(feature.properties.category).trim() === categoryLookup[state.category]);
+  }
+
+  function getP5HexLogTotal(points) {
+    const total = d3.sum(points, d => d.properties.total_2025 || 0);
+    const logTotal = Math.log10(total + 1);
+    return Math.min(Math.max(logTotal - 1.8, 0), 3.7);
+  }
+
+  function getP5HexHeightValue(points) {
+    const total = d3.sum(points, d => d.properties.total_2025 || 0);
+    if (total <= 0) return 0;
+    const logTotal = Math.log10(total + 1);
+    const normalized = Math.min(Math.max((logTotal - 2.1) / 4.0, 0), 1);
+    return 0.14 + Math.pow(normalized, 2.0) * 1.85;
+  }
+
+  function getP5HexTotal(points) {
+    return d3.sum(points, d => d.properties.total_2025 || 0);
+  }
+
+  function getP5HexColorRange() {
+    return P5_HEX_COLOR_RANGE;
+  }
+
+  function setupP5MapInteractions() {
+    mapP5.on('mousemove', 'p5-socio-fill', (e) => {
+      mapP5.getCanvas().style.cursor = 'pointer';
+      const props = e.features[0].properties;
+      showP5Tooltip(props, e.originalEvent.clientX, e.originalEvent.clientY);
+    });
+
+    mapP5.on('mouseleave', 'p5-socio-fill', () => {
+      mapP5.getCanvas().style.cursor = '';
+      tooltip.style.display = 'none';
+    });
+
+    mapP5.on('click', 'p5-socio-fill', (e) => {
+      selectP5Area(e.features[0].properties.area_code, true);
+    });
+
+  }
+
+  function bindP5Controls() {
+    document.querySelectorAll('.p5-cat-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.p5-cat-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        state.category = btn.dataset.category;
+        refreshP5HexLayer();
+        renderP5Scatter();
+        updateP5Selected(state.selectedCode);
+      });
+    });
+
+    document.querySelectorAll('.p5-socio-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.p5-socio-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        state.socio = btn.dataset.socio;
+        updateP5Legend();
+        if (mapP5?.getLayer('p5-socio-fill')) {
+          mapP5.setPaintProperty('p5-socio-fill', 'fill-color', getP5SocioPaint()['fill-color']);
+        }
+        renderP5Scatter();
+        updateP5Selected(state.selectedCode);
+      });
+    });
+
+    document.querySelectorAll('.p5-view-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const preset = P5_VIEW_PRESETS[btn.dataset.view];
+        if (!preset || !mapP5) return;
+        document.querySelectorAll('.p5-view-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        mapP5.easeTo({ ...preset, duration: 650 });
+      });
+    });
+  }
+
+  function updateP5Legend() {
+    socioLegendTitleEl.textContent = P5_SOCIO_LABELS[state.socio];
+    const gradBar = document.querySelector('.p5-grad-bar');
+    if (gradBar) {
+      const legendClass = state.socio === 'imd' ? 'cool' : state.socio === 'ptal' ? 'transit' : 'warm';
+      gradBar.className = `p5-grad-bar ${legendClass}`;
+    }
+  }
+
+  function getP5SocioBreaks(key) {
+    const values = scatterData
+      .map(d => Number(d[key]))
+      .filter(Number.isFinite)
+      .sort((a, b) => a - b);
+
+    if (!values.length) return [0, 0.2, 0.4, 0.6, 0.8, 1];
+
+    const breaks = [0, 0.2, 0.4, 0.6, 0.8, 1].map(q => d3.quantileSorted(values, q));
+    for (let i = 1; i < breaks.length; i += 1) {
+      if (breaks[i] <= breaks[i - 1]) {
+        breaks[i] = breaks[i - 1] + 0.0001;
+      }
+    }
+    return breaks;
+  }
+
+  function renderP5Scatter() {
+    if (!scatterEl) return;
+    const width = scatterEl.clientWidth || 260;
+    const height = scatterEl.clientHeight || 255;
+    const margin = { top: 16, right: 14, bottom: 42, left: 52 };
+    const innerWidth = Math.max(120, width - margin.left - margin.right);
+    const innerHeight = Math.max(120, height - margin.top - margin.bottom);
+    const socioKey = state.socio;
+    const attentionKey = `attention_${state.category}`;
+    const logKey = `log_attention_${state.category}`;
+
+    const rows = scatterData.filter(d =>
+      d[socioKey] != null &&
+      d[attentionKey] != null &&
+      Number.isFinite(Number(d[socioKey])) &&
+      Number.isFinite(Number(d[attentionKey])) &&
+      Number(d[attentionKey]) > 0
+    );
+
+    d3.select(scatterEl).selectAll('*').remove();
+    scatterTitleEl.textContent = `${P5_SOCIO_LABELS[state.socio]} vs ${P5_CATEGORY_LABELS[state.category]} Attention`;
+
+    const svg = d3.select(scatterEl)
+      .append('svg')
+      .attr('width', width)
+      .attr('height', height);
+
+    const g = svg.append('g')
+      .attr('transform', `translate(${margin.left},${margin.top})`);
+
+    const x = d3.scaleLinear()
+      .domain(d3.extent(rows, d => Number(d[socioKey]))).nice()
+      .range([0, innerWidth]);
+
+    const y = d3.scaleLinear()
+      .domain([0, d3.max(rows, d => Number(d[logKey]) || 0) || 1]).nice()
+      .range([innerHeight, 0]);
+
+    g.append('g')
+      .attr('class', 'p5-scatter-axis')
+      .attr('transform', `translate(0,${innerHeight})`)
+      .call(d3.axisBottom(x).ticks(4).tickSizeOuter(0));
+
+    g.append('g')
+      .attr('class', 'p5-scatter-axis')
+      .call(d3.axisLeft(y).ticks(5).tickSizeOuter(0));
+
+    g.append('text')
+      .attr('x', innerWidth / 2)
+      .attr('y', innerHeight + 34)
+      .attr('text-anchor', 'middle')
+      .attr('fill', 'rgba(255,255,255,0.66)')
+      .attr('font-size', 10)
+      .text(P5_SOCIO_AXIS_LABELS[state.socio]);
+
+    g.append('text')
+      .attr('x', -innerHeight / 2)
+      .attr('y', -38)
+      .attr('transform', 'rotate(-90)')
+      .attr('text-anchor', 'middle')
+      .attr('fill', 'rgba(255,255,255,0.66)')
+      .attr('font-size', 10)
+      .text('log pageviews');
+
+    g.selectAll('.p5-scatter-point')
+      .data(rows, d => d.area_code)
+      .join('circle')
+      .attr('class', 'p5-scatter-point')
+      .attr('cx', d => x(Number(d[socioKey])))
+      .attr('cy', d => y(Number(d[logKey]) || 0))
+      .attr('r', d => d.area_code === state.selectedCode ? 5 : 3)
+      .attr('fill', d => d.area_code === state.selectedCode ? '#ffffff' : P5_CATEGORY_COLORS[state.category])
+      .attr('stroke', 'rgba(0,0,0,0.55)')
+      .attr('stroke-width', 0.6)
+      .attr('opacity', d => d.area_code === state.selectedCode ? 1 : 0.58)
+      .on('mouseenter', (event, d) => {
+        showP5Tooltip(d, event.clientX, event.clientY);
+      })
+      .on('mouseleave', () => {
+        tooltip.style.display = 'none';
+      })
+      .on('click', (event, d) => {
+        selectP5Area(d.area_code, true);
+      });
+
+    const r = pearson(
+      rows.map(d => Number(d[socioKey])),
+      rows.map(d => Number(d[logKey]) || 0)
+    );
+    correlationEl.textContent = `Pearson r, pageviews > 0: ${Number.isFinite(r) ? r.toFixed(2) : '-'}`;
+    if (correlationNoteEl) {
+      correlationNoteEl.innerHTML = getP5CorrelationText(r, rows.length);
+    }
+  }
+
+  function getP5CorrelationText(r, n) {
+    if (!Number.isFinite(r) || n < 3) {
+      return 'There are too few non-zero MSOAs to describe a <strong>stable relationship</strong> for this selection.';
+    }
+
+    const socioLabel = P5_SOCIO_TEXT_LABELS[state.socio];
+    const categoryLabel = P5_CATEGORY_LABELS[state.category].toLowerCase();
+    const absR = Math.abs(r);
+    const strength = absR < 0.15 ? 'very weak' : absR < 0.3 ? 'weak' : absR < 0.5 ? 'moderate' : 'strong';
+    const direction = r > 0 ? 'positive' : 'negative';
+
+    if (absR < 0.15) {
+      return `Among ${n} MSOAs with non-zero ${categoryLabel} pageviews, the relationship with ${socioLabel} is <strong>very weak</strong>, suggesting attention is <strong>not strongly structured</strong> by this variable alone.`;
+    }
+
+    const tendency = r > 0
+      ? `higher ${socioLabel} tends to coincide with higher ${categoryLabel} attention`
+      : `higher ${socioLabel} tends to coincide with lower ${categoryLabel} attention`;
+
+    return `Among ${n} non-zero MSOAs, the relationship is <strong>${strength}</strong> and <strong>${direction}</strong>: ${tendency}.`;
+  }
+
+  function selectP5Area(code, flyToArea) {
+    if (state.selectedCode && mapP5?.getSource('p5-msoa')) {
+      mapP5.setFeatureState({ source: 'p5-msoa', id: state.selectedCode }, { selected: false });
+    }
+
+    state.selectedCode = code;
+
+    if (code && mapP5?.getSource('p5-msoa')) {
+      mapP5.setFeatureState({ source: 'p5-msoa', id: code }, { selected: true });
+      mapP5.setFilter('p5-msoa-highlight', ['==', 'area_code', code]);
+    } else if (mapP5?.getLayer('p5-msoa-highlight')) {
+      mapP5.setFilter('p5-msoa-highlight', ['==', 'area_code', '']);
+    }
+
+    updateP5Selected(code);
+    renderP5Scatter();
+
+    if (flyToArea && code) {
+      const feature = mergedGeojson.features.find(f => f.properties.area_code === code);
+      const center = getFeatureCenter(feature);
+      if (center) mapP5.easeTo({ center, zoom: Math.max(mapP5.getZoom(), 10.1), duration: 700 });
+    }
+  }
+
+  function updateP5Selected(code) {
+    const props = code ? scatterData.find(d => d.area_code === code) : null;
+    if (!props) {
+      selectedCard.innerHTML = `
+        <div class="p5-selected-name">Click a map area or scatter point</div>
+        <div class="p5-selected-grid">
+          <span>Attention</span><strong>-</strong>
+          <span>IMD</span><strong>-</strong>
+          <span>Density</span><strong>-</strong>
+          <span>PTAL</span><strong>-</strong>
+        </div>
+        <p class="p5-interpretation">Interaction links the 3D map and scatter plot.</p>
+      `;
+      return;
+    }
+
+    const attention = Number(props[`attention_${state.category}`]) || 0;
+    selectedCard.innerHTML = `
+      <div class="p5-selected-name">${props.area_name}</div>
+      <div class="p5-selected-grid">
+        <span>Attention</span><strong>${formatP5Number(attention)}</strong>
+        <span>IMD</span><strong>${formatP5Decimal(props.imd)}</strong>
+        <span>Density</span><strong>${formatP5Number(props.density)}</strong>
+        <span>PTAL</span><strong>${formatP5Decimal(props.ptal)}</strong>
+      </div>
+      <p class="p5-interpretation">${getP5Interpretation(props, attention)}</p>
+    `;
+  }
+
+  function showP5Tooltip(props, x, y) {
+    const attention = Number(props[`attention_${state.category}`]) || 0;
+    tooltip.innerHTML = `
+      <div class="tt-name">${props.area_name || props.area_code}</div>
+      <div class="tt-row">Attention: ${formatP5Number(attention)}</div>
+      <div class="tt-row">IMD: ${formatP5Decimal(props.imd)}</div>
+      <div class="tt-row">Density: ${formatP5Number(props.density)}</div>
+      <div class="tt-row">PTAL: ${formatP5Decimal(props.ptal)}</div>
+    `;
+    tooltip.style.display = 'block';
+    tooltip.style.left = (x + 12) + 'px';
+    tooltip.style.top = (y + 12) + 'px';
+  }
+
+  function showP5HexTooltip(hex, x, y) {
+    const total = getP5HexTotal(hex.points || []);
+    const count = hex.points?.length || 0;
+    tooltip.innerHTML = `
+      <div class="tt-name">${P5_CATEGORY_LABELS[state.category]} attention cluster</div>
+      <div class="tt-row">POIs: ${formatP5Number(count)}</div>
+      <div class="tt-row">Pageviews: ${formatP5Number(total)}</div>
+    `;
+    tooltip.style.display = 'block';
+    tooltip.style.left = (x + 12) + 'px';
+    tooltip.style.top = (y + 12) + 'px';
+  }
+
+  function getP5Interpretation(props, attention) {
+    const socioNorm = Number(props[`${state.socio}_norm`]);
+    const attentionLog = Number(props[`log_attention_${state.category}`]) || 0;
+    const socioHigh = socioNorm >= 0.66;
+    const socioLow = socioNorm <= 0.33;
+    const attentionHigh = attentionLog >= 4;
+
+    if (attentionHigh && socioHigh && state.socio === 'imd') {
+      return 'This area has high attention despite high deprivation.';
+    }
+    if (attentionHigh && socioLow && state.socio === 'imd') {
+      return 'This area combines high attention with relatively low deprivation.';
+    }
+    if (attentionHigh && socioHigh && state.socio === 'density') {
+      return 'This area combines high attention with high population density.';
+    }
+    if (attentionHigh && socioHigh && state.socio === 'ptal') {
+      return 'This area combines high attention with strong public transport accessibility.';
+    }
+    if (attention === 0) {
+      return 'No matched Wikipedia attention is recorded for this category.';
+    }
+    return 'Compare this MSOA with the scatter plot to judge whether attention is above or below areas with similar context.';
+  }
+
+  function getFeatureCenter(feature) {
+    if (!feature) return null;
+    const coords = [];
+    collectCoordinates(feature.geometry.coordinates, coords);
+    if (!coords.length) return null;
+    const lng = d3.mean(coords, d => d[0]);
+    const lat = d3.mean(coords, d => d[1]);
+    return [lng, lat];
+  }
+
+  function collectCoordinates(node, out) {
+    if (!Array.isArray(node)) return;
+    if (typeof node[0] === 'number' && typeof node[1] === 'number') {
+      out.push(node);
+      return;
+    }
+    node.forEach(child => collectCoordinates(child, out));
+  }
+
+  function pearson(xs, ys) {
+    const n = Math.min(xs.length, ys.length);
+    if (n < 2) return NaN;
+    const meanX = d3.mean(xs);
+    const meanY = d3.mean(ys);
+    const numerator = d3.sum(xs, (x, i) => (x - meanX) * (ys[i] - meanY));
+    const denomX = Math.sqrt(d3.sum(xs, x => (x - meanX) ** 2));
+    const denomY = Math.sqrt(d3.sum(ys, y => (y - meanY) ** 2));
+    return numerator / (denomX * denomY);
+  }
+
+  function toNumberOrZero(value) {
+    const next = Number(value);
+    return Number.isFinite(next) ? next : 0;
+  }
+
+  function toNumberOrNull(value) {
+    const next = Number(value);
+    return Number.isFinite(next) ? next : null;
+  }
+
+  function formatP5Number(value) {
+    if (value == null || value === '') return '-';
+    const next = Number(value);
+    if (!Number.isFinite(next)) return '-';
+    return d3.format(',')(Math.round(next));
+  }
+
+  function formatP5Decimal(value) {
+    if (value == null || value === '') return '-';
+    const next = Number(value);
+    if (!Number.isFinite(next)) return '-';
+    return next.toFixed(1);
+  }
+})();

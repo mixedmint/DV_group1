@@ -19,6 +19,9 @@
   <!-- D3.js -->
   <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
 
+  <!-- deck.gl for P5 hexbin attention layer -->
+  <script src="https://unpkg.com/deck.gl@8.9.36/dist.min.js"></script>
+
   <link rel="stylesheet" href="style.css"/>
 </head>
 
@@ -34,6 +37,7 @@
       <li><a href="#map2">Heatmap</a></li>
       <li><a href="#map3">Temporal Dynamics</a></li>
       <li><a href="#map4">Borough Ranking</a></li>
+      <li><a href="#map5">Socio-economic</a></li>
       <li><a href="#conclusion">Conclusion</a></li>
       <li><a href="#team">Team</a></li>
     </ul>
@@ -420,23 +424,96 @@
   
   <hr class="divider"/>
 
-  <!-- SECTION 6 · Map 5 -->
+  <!-- SECTION 6 · Map 5 · Socio-economic correlation -->
   <section id="map5" class="bg-light">
-    <div class="section-inner">
+    <div class="section-inner p5-header">
       <p class="section-label">06 · Visualisation 5</p>
-      <h2 class="section-title">Map Title Here</h2>
+      <h2 class="section-title">Digital Attention and Socio-economic Context</h2>
       <hr class="rule"/>
-      <p class="section-subtitle">Describe this fourth visualisation and the key spatial patterns it reveals.</p>
-      <div class="map-wrap">
-        <div id="mapbox-4">
-          <div class="map-placeholder">
-            <svg width="44" height="44" fill="none" stroke="#56C9D6" stroke-width="1.5" viewBox="0 0 24 24"><path d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 13l4.553 2.276A1 1 0 0021 21.382V10.618a1 1 0 00-.553-.894L15 7m0 13V7m0 0L9 4"/></svg>
-            Mapbox Map 4 — add your token in the script below
+      <p class="section-subtitle">
+        Compare MSOA-level Wikipedia attention with deprivation, population density and public transport accessibility.
+        The base map shows socio-economic context, while 3D columns show digital attention.
+      </p>
+    </div>
+
+    <div class="p5-layout">
+      <aside class="p5-panel p5-left-panel">
+        <div class="p5-panel-block">
+          <div class="p5-panel-label">POI Category</div>
+          <div class="p5-btn-group">
+            <button class="p5-cat-btn active" data-category="all">All POIs</button>
+            <button class="p5-cat-btn" data-category="cultural">Cultural &amp; Heritage</button>
+            <button class="p5-cat-btn" data-category="green">Green &amp; Recreation</button>
+            <button class="p5-cat-btn" data-category="commercial">Commercial</button>
           </div>
         </div>
+
+        <div class="p5-panel-block">
+          <div class="p5-panel-label">Attention Legend</div>
+          <div class="p5-height-legend">
+            <span class="p5-height-bar low"></span>
+            <span class="p5-height-bar mid"></span>
+            <span class="p5-height-bar high"></span>
+          </div>
+          <div class="p5-legend-row"><span>Low</span><span>High</span></div>
+          <p class="p5-panel-note">Hex height and colour = 2025 Wikipedia pageviews aggregated from POI points.</p>
+        </div>
+
+        <div class="p5-panel-block">
+          <div class="p5-panel-label">Selected MSOA</div>
+          <div id="p5-selected-card" class="p5-selected-card">
+            <div class="p5-selected-name">Click a map area or scatter point</div>
+            <div class="p5-selected-grid">
+              <span>Attention</span><strong>-</strong>
+              <span>IMD</span><strong>-</strong>
+              <span>Density</span><strong>-</strong>
+              <span>PTAL</span><strong>-</strong>
+            </div>
+            <p class="p5-interpretation">Interaction links the 3D map and scatter plot.</p>
+          </div>
+        </div>
+      </aside>
+
+      <div class="p5-map-wrap">
+        <div id="map-p5"></div>
+        <div class="p5-view-control" aria-label="Map view">
+          <button class="p5-view-btn" data-view="top">Top</button>
+          <button class="p5-view-btn active" data-view="balanced">Map</button>
+          <button class="p5-view-btn" data-view="threeD">3D</button>
+        </div>
+        <div id="p5-tooltip" style="display:none;"></div>
       </div>
-      <p class="map-source">Data source: [Dataset name] · <a href="#">Link to data</a></p>
+
+      <aside class="p5-panel p5-right-panel">
+        <div class="p5-panel-block">
+          <div class="p5-panel-label">Socio-economic Basemap</div>
+          <div class="p5-btn-group">
+            <button class="p5-socio-btn active" data-socio="imd">IMD Deprivation</button>
+            <button class="p5-socio-btn" data-socio="density">Population Density</button>
+            <button class="p5-socio-btn" data-socio="ptal">Public Transport</button>
+          </div>
+        </div>
+
+        <div class="p5-panel-block">
+          <div class="p5-panel-label">Socio-economic Legend</div>
+          <div id="p5-socio-legend-title" class="p5-legend-title">IMD deprivation score</div>
+          <div class="p5-grad-bar"></div>
+          <div class="p5-legend-row"><span>Lower</span><span>Higher</span></div>
+        </div>
+
+        <div class="p5-panel-block p5-scatter-block">
+          <div class="p5-panel-label">Scatter Plot</div>
+          <div class="p5-scatter-title" id="p5-scatter-title">IMD vs Attention</div>
+          <div id="p5-scatter"></div>
+          <div class="p5-correlation" id="p5-correlation">Correlation: -</div>
+          <p class="p5-correlation-note" id="p5-correlation-note"></p>
+        </div>
+      </aside>
     </div>
+
+    <p class="map-source" style="padding: 0.5rem 2.5rem;">
+      Data: Wikipedia Pageviews API · ONS IMD 2019 · ONS population density 2021 · TfL PTAL 2015 · MSOA boundaries
+    </p>
   </section>
 
   <hr class="divider"/>
@@ -569,9 +646,7 @@
     // });
   </script>
 
-  <script src="script.js"></script>
+  <script src="script.js?v=p5-purple-rotate-10"></script>
 
 </body>
 </html>
-
-
