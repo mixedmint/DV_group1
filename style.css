@@ -34,7 +34,7 @@ nav {
   background: var(--dark);
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   padding: 0 2.5rem;
   z-index: 1000;
   box-shadow: 0 2px 12px rgba(0,0,0,0.18);
