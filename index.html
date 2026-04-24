@@ -59,11 +59,28 @@
       <p class="section-label">01 · Introduction</p>
       <h2 class="section-title">Introduction</h2>
       <hr class="rule"/>
-      <p class="section-subtitle">
-        <p>In the digital age, people's interest in urban places is reflected not only in actual visits, consumption, or commutes, but also in whether they actively search for, browse, and follow information related to that place online. In other words, urban locations possess not only physical accessibility and material visibility but also digital visibility, encompassing platform traffic, search behavior, and online reading behavior.</p>
-        <p>It can be further understood as <strong>digital attention</strong>. It refers to <strong>the observable level of public information-seeking and cognitive engagement directed toward a particular location through digital platforms</strong>, which can be measured through online traces such as pageviews over time. </p>
-        <p>The previous studies suggest that Wikipedia data could be used to quantify patterns of public interest at scale (Mittermeier et al. 2021). Its pageviews can serve as a novel digital metric of public interest (Guedes-Santos et al. 2021) or place-related interest (Owuor et al. 2023). Also, visits to topically related Wikipedia articles can be interpreted as collective attention and viewed as a proxy for information demand (Ciampaglia et al. 2015). Therefore, Wikipedia pageviews are not merely abstract web traffic but a meaningful indicator of how urban places become visible, salient, and sought after in digital space.</p>
-      </p>
+      <div class="section-subtitle intro-copy">
+        <div class="intro-editorial">
+          <div class="intro-block intro-block-context">
+            <div class="intro-block-kicker">What Is Digital Attention?</div>
+            <p class="intro-lead">In the digital age, <strong>people's interest in urban places</strong> is reflected not only in actual visits, consumption, or commutes, but also in whether they actively search for, browse, and follow information related to that place online. In other words, urban locations possess not only <strong>physical accessibility and material visibility</strong> but also <strong>digital visibility</strong>, encompassing platform traffic, search behavior, and online reading behavior.</p>
+            <div class="intro-definition">
+              <div class="intro-definition-label">Core Concept</div>
+              <p><strong>People's interest in urban places</strong> can be further understood as <span class="accent-mark">digital attention</span>. It refers to <span class="accent-mark accent-mark-strong">the observable level of public information-seeking and cognitive engagement directed toward a particular location through digital platforms</span>, which can be measured through online traces such as <strong>pageviews over time</strong>.</p>
+            </div>
+          </div>
+          <div class="intro-block intro-block-evidence-wrap">
+            <div class="intro-block intro-block-evidence">
+              <div class="intro-block-kicker">Why Wikipedia Pageviews?</div>
+              <ul class="intro-evidence">
+                <li>The previous studies suggest that <strong>Wikipedia data</strong> could be used to quantify patterns of <strong>public interest at scale</strong> (Mittermeier et al. 2021).</li>
+                <li>Its pageviews can serve as a <strong>novel digital metric of public interest</strong> (Guedes-Santos et al. 2021) or place-related interest (Owuor et al. 2023).</li>
+                <li>Visits to topically related Wikipedia articles can be interpreted as <strong>collective attention</strong> and viewed as a <strong>proxy for information demand</strong> (Ciampaglia et al. 2015). Therefore, Wikipedia pageviews are not merely abstract web traffic but a <strong>meaningful indicator</strong> of how urban places become visible, salient, and sought after in digital space.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
 
       <div class="cards-grid">
         <div class="card">
@@ -71,26 +88,34 @@
             <svg width="22" height="22" fill="none" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 010 20M12 2a15 15 0 000 20"/></svg>
           </div>
           <h3>Research Questions</h3>
-          <p>How is digital attention to places spatially distributed across London?</p>
-          <p>How does digital attention vary over time?</p>
-          <p>How do the spatial patterns of digital attention correlate with socioeconomic characteristics?</p>
+          <ul class="card-list">
+            <li>How is digital attention to places spatially distributed across London?</li>
+            <li>How does digital attention vary over time?</li>
+            <li>How do the spatial patterns of digital attention correlate with socioeconomic characteristics?</li>
+          </ul>
         </div>
         <div class="card">
           <div class="card-icon">
             <svg width="22" height="22" fill="none" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
           </div>
           <h3>Data Sources</h3>
-          <p>MediaWiki API</p>
-          <p>Point of Interest data for the United Kingdom from the Overture Maps Foundation</p>
-          <p>Population density / Index of Multiple Deprivation (IMD) …(ONS)</p>
+          <ul class="card-list card-list-sources">
+            <li><span class="card-list-label">Wikipedia Pageviews</span><span>MediaWiki API</span></li>
+            <li><span class="card-list-label">POI Data</span><span>Point of Interest data for the United Kingdom from the Overture Maps Foundation</span></li>
+            <li><span class="card-list-label">IMD (MSOA-level)</span><span>Indices of Deprivation at LSOA level, aggregated to MSOA level</span></li>
+            <li><span class="card-list-label">Population Density</span><span>ONS Census 2021</span></li>
+            <li><span class="card-list-label">PTALs</span><span>Public Transport Accessibility Levels</span></li>
+          </ul>
         </div>
         <div class="card">
           <div class="card-icon">
             <svg width="22" height="22" fill="none" stroke-width="2" viewBox="0 0 24 24"><path d="M12 20V10M18 20V4M6 20v-4"/></svg>
           </div>
           <h3>Spatial Scale</h3>
-          <p>MSOA-level</p>
-          <p>Borough-level</p>
+          <ul class="card-list">
+            <li>MSOA-level</li>
+            <li>Borough-level</li>
+          </ul>
         </div>
       </div>
 
@@ -112,7 +137,7 @@
     <hr class="rule"/>
     <p class="section-subtitle">
       Explore how London's cultural, green, and commercial places are distributed across the city.
-      Point size reflects total Wikipedia pageviews in 2025.
+      Point size reflects total Wikipedia pageviews of the POI in 2025.
     </p>
   </div>
 
@@ -203,7 +228,7 @@
       <div class="vis-analysis-card">
         <div class="vis-analysis-card-num">04</div>
         <div class="vis-analysis-card-title">Commercial</div>
-        <p>Commercial POIs are the least numerous, concentrated around <strong>Knightsbridge</strong> and <strong>Canary Wharf</strong>, with pageview totals broadly comparable to leading green spaces.</p>
+        <p>Commercial POIs are the least numerous, concentrated around <strong>Knightsbridge</strong> and <strong>Canary Wharf</strong>, with pageview totals broadly comparable to <strong>those of the leading green spaces</strong>.</p>
       </div>
     </div>
   </div>
@@ -221,7 +246,7 @@
     <h2 class="section-title">Attention Heatmap</h2>
     <hr class="rule"/>
     <p class="section-subtitle">
-      Wikipedia pageviews from 775 London POIs aggregated to MSOA level,
+      Wikipedia pageviews from 775 London POIs were aggregated to MSOA level,
       visualised as a choropleth map to reveal the spatial distribution
       of digital attention across London's neighbourhoods in 2025.
     </p>
@@ -442,7 +467,7 @@
   <!-- Section header (constrained width) -->
   <div class="section-inner borough-header">
     <p class="section-label">05 · Visualisation 4</p>
-    <h2 class="section-title">Digital Attention by Borough</h2>
+    <h2 class="section-title">Digital Attention Shifting by Borough</h2>
     <hr class="rule"/>
     <p class="section-subtitle">
       Replay monthly changes in total Wikipedia pageviews across London boroughs,
@@ -551,7 +576,7 @@
       <hr class="rule"/>
       <p class="section-subtitle">
         Compare MSOA-level Wikipedia attention with deprivation, population density and public transport accessibility.
-        The base map shows socio-economic context, while 3D columns show digital attention.
+        The base map shows socio-economic context, while the 3D columns show MSOA-level POI pageview totals positioned at each MSOA centroid.
       </p>
     </div>
 
@@ -575,20 +600,20 @@
             <span class="p5-height-bar high"></span>
           </div>
           <div class="p5-legend-row"><span>Low</span><span>High</span></div>
-          <p class="p5-panel-note">Hex height and colour = 2025 Wikipedia pageviews aggregated from POI points.</p>
+          <p class="p5-panel-note">Hexagon column height and colour = MSOA-level 2025 Wikipedia pageviews aggregated from POI points.</p>
         </div>
 
         <div class="p5-panel-block">
           <div class="p5-panel-label">Selected MSOA</div>
           <div id="p5-selected-card" class="p5-selected-card">
-            <div class="p5-selected-name">Click a map area or scatter point</div>
+            <div class="p5-selected-name">Click a map area, column or scatter point</div>
             <div class="p5-selected-grid">
               <span>Attention</span><strong>-</strong>
               <span>IMD</span><strong>-</strong>
               <span>Density</span><strong>-</strong>
               <span>PTAL</span><strong>-</strong>
             </div>
-            <p class="p5-interpretation">Interaction links the 3D map and scatter plot.</p>
+            <p class="p5-interpretation">Interaction links MSOA columns, the socio-economic basemap and the scatter plot.</p>
           </div>
         </div>
       </aside>
@@ -635,6 +660,37 @@
     </p>
   </section>
 
+  <div class="section-inner vis-analysis">
+    <p class="section-label">Analysis</p>
+    <div class="vis-analysis-cards vis-analysis-cards-5">
+      <div class="vis-analysis-card">
+        <div class="vis-analysis-card-num">01</div>
+        <div class="vis-analysis-card-title">IMD (Deprivation)</div>
+        <p>Across all POI categories, attention shows consistently <strong>very weak</strong> relationships with IMD. This suggests that Wikipedia attention is not strongly structured by socio-economic deprivation, and highly attended places are not limited to either more affluent or more deprived areas.</p>
+      </div>
+      <div class="vis-analysis-card">
+        <div class="vis-analysis-card-num">02</div>
+        <div class="vis-analysis-card-title">Population Density</div>
+        <p>Population density also has a generally <strong>weak</strong> relationship with attention. While All POIs and Cultural categories show only minimal association, Commercial attention exhibits a slight <strong>negative</strong> relationship, indicating that highly attended commercial locations are not necessarily found in the most densely populated areas.</p>
+      </div>
+      <div class="vis-analysis-card">
+        <div class="vis-analysis-card-num">03</div>
+        <div class="vis-analysis-card-title">Public Transport Accessibility (PTAL)</div>
+        <p>PTAL is the <strong>most explanatory</strong> variable among the three. Attention shows a <strong>moderate positive</strong> relationship with accessibility for All POIs and Cultural &amp; Heritage, meaning better-connected areas tend to receive more digital attention. However, this relationship is much weaker for Green and Commercial POIs.</p>
+      </div>
+      <div class="vis-analysis-card">
+        <div class="vis-analysis-card-num">04</div>
+        <div class="vis-analysis-card-title">Category Differences</div>
+        <p>Different POI types respond differently to urban context. Cultural &amp; Heritage closely follows the accessibility-driven pattern, while Green &amp; Recreation is more spatially dispersed and weakly structured. Commercial attention appears more selective, focusing on specific destination locations rather than general urban conditions.</p>
+      </div>
+      <div class="vis-analysis-card">
+        <div class="vis-analysis-card-num">05</div>
+        <div class="vis-analysis-card-title">Key Insight</div>
+        <p>Overall, Wikipedia attention is not strongly explained by socio-economic status or population density. Instead, it is more closely associated with <strong>accessibility</strong>, especially for overall and cultural attention. This suggests that digital attention is not simply concentrated in wealthier or more crowded areas, but tends to align with places that are easier to reach within the public transport network.</p>
+      </div>
+    </div>
+  </div>
+
   <hr class="divider"/>
 
   <!-- SECTION 6 · Conclusion -->
@@ -644,18 +700,25 @@
       <h2 class="section-title">Key Findings</h2>
       <hr class="rule"/>
       <div class="highlight-box">
-        <p>"Replace this with your main takeaway — the single most important insight your project communicates about urban analytics in [your city/region]."</p>
+        <p><strong>Main takeaway</strong><br/>London's digital attention is uneven across space and time, and does not align with the city's most densely populated or socio-economically intense areas, revealing a <strong>mismatch between digital visibility and physical urban intensity</strong>.</p>
       </div>
-      <div class="two-col">
-        <div>
-          <h3 style="font-family:var(--heading);font-size:1rem;font-weight:700;margin-bottom:0.75rem;">What We Found</h3>
-          <p style="color:var(--mid);font-weight:300;margin-bottom:1rem;">Summarise what your visualisations reveal about the research topic.</p>
-          <p style="color:var(--mid);font-weight:300;">Further findings or implications.</p>
+      <h3 class="conclusion-section-title">What We Found</h3>
+      <div class="conclusion-grid">
+        <div class="conclusion-panel">
+          <div class="conclusion-panel-kicker">Spatial Pattern</div>
+          <p class="conclusion-copy"><strong>Digital attention is highly concentrated in Central London</strong>, especially around <strong>Cultural &amp; Heritage POIs</strong>, while other categories are more spatially dispersed but still shaped by a small number of prominent destinations.</p>
         </div>
-        <div>
-          <h3 style="font-family:var(--heading);font-size:1rem;font-weight:700;margin-bottom:0.75rem;">Limitations & Future Work</h3>
-          <p style="color:var(--mid);font-weight:300;margin-bottom:1rem;">Acknowledge data limitations, methodological constraints, and assumptions made.</p>
-          <p style="color:var(--mid);font-weight:300;">Suggest what future research could build on this work.</p>
+        <div class="conclusion-panel">
+          <div class="conclusion-panel-kicker">Temporal Pattern</div>
+          <p class="conclusion-copy">Over time, attention follows a <strong>clear U-shaped annual pattern</strong>, weakening mid-year and recovering toward the end, reinforcing rather than reshaping the existing spatial hierarchy.</p>
+        </div>
+        <div class="conclusion-panel">
+          <div class="conclusion-panel-kicker">Socio-economic Context</div>
+          <p class="conclusion-copy">Socio-economic analysis shows <strong>weak relationships with deprivation and population density</strong>, but a <strong>clearer link with public transport accessibility</strong>, suggesting people tend to focus on places that are easier to reach rather than simply more crowded or affluent.</p>
+        </div>
+        <div class="conclusion-panel conclusion-panel-limit">
+          <div class="conclusion-panel-kicker">Limitations</div>
+          <p class="conclusion-copy">The analysis is limited to <strong>selected POI categories with uneven sample sizes</strong>, and Wikipedia pageviews capture only <strong>one form of digital attention</strong> rather than actual visits or usage.</p>
         </div>
       </div>
     </div>

@@ -1412,10 +1412,10 @@ const P5_HEX_COLOR_RANGE = [
 ];
 
 const P5_HEX_ELEVATION_SCALES = {
-  all: 1600,
-  cultural: 1600,
-  green: 1600,
-  commercial: 1600
+  all: 5000,
+  cultural: 5000,
+  green: 5000,
+  commercial: 5000
 };
 
 const P5_SOCIO_LABELS = {
@@ -1438,7 +1438,7 @@ const P5_SOCIO_TEXT_LABELS = {
 
 const P5_VIEW_PRESETS = {
   top: { zoom: 9.08, pitch: 0, bearing: 0 },
-  balanced: { zoom: 9.16, pitch: 32, bearing: -10 },
+  balanced: { zoom: 9.4, pitch: 32, bearing: -10 },
   threeD: { zoom: 9.25, pitch: 50, bearing: -18 }
 };
 
@@ -1635,8 +1635,8 @@ const P5_VIEW_PRESETS = {
   }
 
   function refreshP5HexLayer() {
-    if (!window.deck?.MapboxOverlay || !window.deck?.HexagonLayer) {
-      console.warn('deck.gl is not available; P5 hexbin attention layer was skipped.');
+    if (!window.deck?.MapboxOverlay || !window.deck?.ColumnLayer) {
+      console.warn('deck.gl is not available; P5 column attention layer was skipped.');
       return;
     }
 
@@ -1657,16 +1657,17 @@ const P5_VIEW_PRESETS = {
   }
 
   function buildP5HexLayer() {
-    const data = getP5FilteredPois();
+    const data = getP5ColumnData();
 
-    return new deck.HexagonLayer({
-      id: `p5-attention-hexbin-${state.category}`,
+    return new deck.ColumnLayer({
+      id: `p5-attention-column-${state.category}`,
       data,
       pickable: true,
       extruded: true,
-      radius: 850,
-      coverage: 0.58,
-      opacity: 0.56,
+      diskResolution: 6,
+      radius: 312,
+      coverage: 0.86,
+      opacity: 0.72,
       elevationScale: P5_HEX_ELEVATION_SCALES[state.category] || P5_HEX_ELEVATION_SCALES.all,
       elevationRange: [0, 10],
       material: {
@@ -1675,66 +1676,101 @@ const P5_VIEW_PRESETS = {
         shininess: 24,
         specularColor: [255, 255, 255]
       },
-      colorRange: getP5HexColorRange(),
-      colorDomain: [0.14, 1.99],
-      getPosition: d => d.geometry.coordinates,
-      getColorWeight: d => d.properties.total_2025,
-      getElevationWeight: d => d.properties.total_2025,
-      getColorValue: points => getP5HexHeightValue(points),
-      getElevationValue: points => getP5HexHeightValue(points),
+      getPosition: d => d.center,
+      getFillColor: d => getP5ColumnColor(d.heightMetric),
+      getLineColor: d => d.area_code === state.selectedCode ? [255, 255, 255, 235] : [255, 255, 255, 90],
+      lineWidthMinPixels: d => d.area_code === state.selectedCode ? 2 : 1,
+      getElevation: d => d.heightMetric,
       onHover: info => {
         if (info.object) {
-          showP5HexTooltip(info.object, info.x, info.y);
+          showP5ColumnTooltip(info.object, info.x, info.y);
         } else {
           tooltip.style.display = 'none';
         }
       },
       onClick: info => {
-        if (!info.coordinate || !mapP5) return;
-        const point = mapP5.project(info.coordinate);
-        const features = mapP5.queryRenderedFeatures(point, { layers: ['p5-socio-fill'] });
-        if (features.length) selectP5Area(features[0].properties.area_code, false);
+        if (!info.object) return;
+        selectP5Area(info.object.area_code, true);
       },
       updateTriggers: {
-        getColorWeight: state.category,
-        getElevationWeight: state.category,
-        getColorValue: state.category,
-        getElevationValue: state.category,
-        colorRange: state.category
+        getFillColor: [state.category, state.selectedCode],
+        getLineColor: state.selectedCode,
+        getElevation: state.category
       }
     });
   }
 
-  function getP5FilteredPois() {
-    if (state.category === 'all') return p5PoiData;
-    const categoryLookup = {
-      cultural: 'Cultural_Heritage',
-      green: 'Green_Recreation',
-      commercial: 'Commercial'
-    };
-    return p5PoiData.filter(feature => String(feature.properties.category).trim() === categoryLookup[state.category]);
+  function getP5ColumnData() {
+    const attentionKey = `attention_${state.category}`;
+    const logKey = `log_attention_${state.category}`;
+
+    return mergedGeojson.features
+      .map(feature => {
+        const center = getFeatureCenter(feature);
+        const props = feature.properties;
+        const attention = Number(props[attentionKey]) || 0;
+
+        return {
+          area_code: props.area_code,
+          area_name: props.area_name,
+          center,
+          attention,
+          logAttention: Number(props[logKey]) || 0,
+          heightMetric: getP5AttentionMetric(attention),
+          imd: props.imd,
+          density: props.density,
+          ptal: props.ptal
+        };
+      })
+      .filter(d => d.center && d.attention > 0);
   }
 
-  function getP5HexLogTotal(points) {
-    const total = d3.sum(points, d => d.properties.total_2025 || 0);
-    const logTotal = Math.log10(total + 1);
-    return Math.min(Math.max(logTotal - 1.8, 0), 3.7);
-  }
-
-  function getP5HexHeightValue(points) {
-    const total = d3.sum(points, d => d.properties.total_2025 || 0);
-    if (total <= 0) return 0;
-    const logTotal = Math.log10(total + 1);
+  function getP5AttentionMetric(attention) {
+    if (attention <= 0) return 0;
+    const logTotal = Math.log10(attention + 1);
     const normalized = Math.min(Math.max((logTotal - 2.1) / 4.0, 0), 1);
     return 0.14 + Math.pow(normalized, 2.0) * 1.85;
   }
 
-  function getP5HexTotal(points) {
-    return d3.sum(points, d => d.properties.total_2025 || 0);
+  function getP5ColumnColor(metric) {
+    if (metric <= 0.42) return P5_HEX_COLOR_RANGE[0];
+    if (metric <= 0.68) return P5_HEX_COLOR_RANGE[1];
+    if (metric <= 0.96) return P5_HEX_COLOR_RANGE[2];
+    if (metric <= 1.26) return P5_HEX_COLOR_RANGE[3];
+    if (metric <= 1.58) return P5_HEX_COLOR_RANGE[4];
+    return P5_HEX_COLOR_RANGE[5];
   }
 
-  function getP5HexColorRange() {
-    return P5_HEX_COLOR_RANGE;
+  function getP5AverageAttention() {
+    const attentionKey = `attention_${state.category}`;
+    const values = scatterData
+      .map(d => Number(d[attentionKey]) || 0)
+      .filter(v => v > 0);
+
+    return values.length ? d3.mean(values) : 0;
+  }
+
+  function getP5AttentionBenchmark(attention) {
+    const average = getP5AverageAttention();
+    if (!average || attention <= 0) {
+      return { symbol: '→', text: 'No meaningful comparison available.' };
+    }
+
+    const ratio = attention / average;
+    if (ratio >= 1.1) {
+      return {
+        symbol: '↑',
+        text: `${ratio.toFixed(1)}x the London MSOA average`
+      };
+    }
+    if (ratio <= 0.9) {
+      return {
+        symbol: '↓',
+        text: `${(average / Math.max(attention, 1)).toFixed(1)}x lower than the London MSOA average`
+      };
+    }
+
+    return { symbol: '→', text: 'Close to the London MSOA average' };
   }
 
   function setupP5MapInteractions() {
@@ -1963,19 +1999,20 @@ const P5_VIEW_PRESETS = {
     const props = code ? scatterData.find(d => d.area_code === code) : null;
     if (!props) {
       selectedCard.innerHTML = `
-        <div class="p5-selected-name">Click a map area or scatter point</div>
+        <div class="p5-selected-name">Click a map area, column or scatter point</div>
         <div class="p5-selected-grid">
           <span>Attention</span><strong>-</strong>
           <span>IMD</span><strong>-</strong>
           <span>Density</span><strong>-</strong>
           <span>PTAL</span><strong>-</strong>
         </div>
-        <p class="p5-interpretation">Interaction links the 3D map and scatter plot.</p>
+        <p class="p5-interpretation">Interaction links MSOA columns, the socio-economic basemap and the scatter plot.</p>
       `;
       return;
     }
 
     const attention = Number(props[`attention_${state.category}`]) || 0;
+    const benchmark = getP5AttentionBenchmark(attention);
     selectedCard.innerHTML = `
       <div class="p5-selected-name">${props.area_name}</div>
       <div class="p5-selected-grid">
@@ -1984,15 +2021,18 @@ const P5_VIEW_PRESETS = {
         <span>Density</span><strong>${formatP5Number(props.density)}</strong>
         <span>PTAL</span><strong>${formatP5Decimal(props.ptal)}</strong>
       </div>
+      <p class="p5-benchmark">Attention level: ${benchmark.symbol} ${benchmark.text}</p>
       <p class="p5-interpretation">${getP5Interpretation(props, attention)}</p>
     `;
   }
 
   function showP5Tooltip(props, x, y) {
     const attention = Number(props[`attention_${state.category}`]) || 0;
+    const benchmark = getP5AttentionBenchmark(attention);
     tooltip.innerHTML = `
       <div class="tt-name">${props.area_name || props.area_code}</div>
       <div class="tt-row">Attention: ${formatP5Number(attention)}</div>
+      <div class="tt-row">Average level: ${benchmark.symbol} ${benchmark.text}</div>
       <div class="tt-row">IMD: ${formatP5Decimal(props.imd)}</div>
       <div class="tt-row">Density: ${formatP5Number(props.density)}</div>
       <div class="tt-row">PTAL: ${formatP5Decimal(props.ptal)}</div>
@@ -2002,13 +2042,15 @@ const P5_VIEW_PRESETS = {
     tooltip.style.top = (y + 12) + 'px';
   }
 
-  function showP5HexTooltip(hex, x, y) {
-    const total = getP5HexTotal(hex.points || []);
-    const count = hex.points?.length || 0;
+  function showP5ColumnTooltip(column, x, y) {
+    const benchmark = getP5AttentionBenchmark(column.attention);
     tooltip.innerHTML = `
-      <div class="tt-name">${P5_CATEGORY_LABELS[state.category]} attention cluster</div>
-      <div class="tt-row">POIs: ${formatP5Number(count)}</div>
-      <div class="tt-row">Pageviews: ${formatP5Number(total)}</div>
+      <div class="tt-name">${column.area_name}</div>
+      <div class="tt-row">MSOA attention: ${formatP5Number(column.attention)}</div>
+      <div class="tt-row">Average level: ${benchmark.symbol} ${benchmark.text}</div>
+      <div class="tt-row">IMD: ${formatP5Decimal(column.imd)}</div>
+      <div class="tt-row">Density: ${formatP5Number(column.density)}</div>
+      <div class="tt-row">PTAL: ${formatP5Decimal(column.ptal)}</div>
     `;
     tooltip.style.display = 'block';
     tooltip.style.left = (x + 12) + 'px';
